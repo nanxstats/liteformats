@@ -1,2 +1,4 @@
 ^liteformats\.Rproj$
 ^\.Rproj\.user$
+
+^LICENSE\.md$

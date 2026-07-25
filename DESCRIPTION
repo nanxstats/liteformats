@@ -7,8 +7,7 @@ Authors@R: c(
 Description: A collection of lightweight, minimalist output formats and
     templates for 'litedown', including resumes, cover letters,
     presentations, and other common document types.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
