@@ -1,9 +1,12 @@
 Package: liteformats
-Title: What the Package Does (One Line, Title Case)
+Title: Lightweight Output Formats for 'litedown'
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("Nan", "Xiao", email = "me@nanx.me", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0002-0250-5673")))
+Description: A collection of lightweight, minimalist output formats and
+    templates for 'litedown', including resumes, cover letters,
+    presentations, and other common document types.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8

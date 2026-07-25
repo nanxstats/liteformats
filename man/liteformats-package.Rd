@@ -4,16 +4,16 @@
 \name{liteformats-package}
 \alias{liteformats}
 \alias{liteformats-package}
-\title{liteformats: What the Package Does (One Line, Title Case)}
+\title{liteformats: Lightweight Output Formats for 'litedown'}
 \description{
-What the package does (one paragraph).
+A collection of lightweight, minimalist output formats and templates for 'litedown', including resumes, cover letters, presentations, and other common document types.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Nan Xiao \email{me@nanx.me} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{
-  \item First Last \email{first.last@example.com}
+  \item Nan Xiao \email{me@nanx.me} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID}) [copyright holder]
 }
 
 }
