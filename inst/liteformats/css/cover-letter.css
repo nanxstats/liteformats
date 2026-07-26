@@ -1,0 +1,78 @@
+.cover-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 23%) minmax(0, 1fr);
+  column-gap: 5%;
+  align-items: start;
+  min-height: 100%;
+}
+
+.cover-sidebar {
+  padding-top: 1em;
+  color: var(--lf-link-color);
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+.cover-name {
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.cover-address {
+  margin: 2.1em 0 0;
+  font-style: normal;
+}
+
+.cover-contact {
+  margin: 2em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cover-contact li {
+  margin: 0.18em 0;
+}
+
+.cover-sidebar a {
+  color: inherit;
+}
+
+.cover-date {
+  margin-top: 2em;
+  color: #171717;
+}
+
+.cover-letter {
+  min-width: 0;
+  padding-top: 1em;
+}
+
+.cover-greeting {
+  margin: 0 0 var(--lf-paragraph-spacing);
+}
+
+.cover-letter p {
+  margin: 0 0 var(--lf-paragraph-spacing);
+}
+
+.cover-letter p:last-child {
+  margin-bottom: 0;
+}
+
+.cover-letter .signature {
+  display: block;
+  max-width: 11em;
+  max-height: 4em;
+  margin: -0.35em 0 0.1em;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.cover-letter .signature-name {
+  display: block;
+  margin-top: -0.35em;
+  font-style: italic;
+  font-size: 1.15em;
+}

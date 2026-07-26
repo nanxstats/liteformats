@@ -1,0 +1,63 @@
+---
+title: "Jane Doe --- Cover Letter"
+author: "Jane Doe"
+address: ["123 Example Street", "Example City, EX 00000"]
+phone: "(000) 000-0000"
+email: "jane.doe@example.com"
+website: "janedoe.example"
+date: "`{r} format(Sys.Date(), '%B %e, %Y')`"
+greeting: "Dear Hiring Committee:"
+output: html
+liteformats:
+  paper: letter
+  margins: 1in
+  font-family: "Georgia, 'Times New Roman', serif"
+  font-size: 11pt
+  font-scale: 0.9
+  ligatures: false
+  line-height: 1.15
+  paragraph-spacing: 1em
+  link-color: "#385898"
+  paged: true
+  # google-font: "Source Serif 4"
+  # font-files:
+  #   regular: "fonts/MySerif-Regular.woff2"
+  #   italic: "fonts/MySerif-Italic.woff2"
+  #   bold: "fonts/MySerif-Bold.woff2"
+---
+
+```{r}
+#| include = FALSE
+company <- "Acme Corporation"
+role <- "Director of Data Science"
+```
+
+I am writing to apply for the `{r} role` position at `{r} company`. My work has
+focused on a problem central to your team: turning statistically rigorous ideas
+into systems that scientists can use confidently. Across research and product
+settings, I have led multidisciplinary programs, developed reproducible
+analytical infrastructure, and helped teams communicate evidence clearly enough
+to support consequential decisions.
+
+At Example Corporation, I established a shared workflow for study design,
+analysis, review, and reporting across twelve research teams. The work combined
+methodological judgment with practical engineering: I designed the technical
+architecture, built core R and Python components, created validation and release
+processes, and partnered with scientists and engineers to make the system fit
+their daily work. The result shortened review cycles while strengthening
+traceability and consistency.
+
+I would bring the same combination of statistical depth, software craftsmanship,
+and organizational empathy to `{r} company`. I am especially drawn to the
+opportunity to shape an analytical platform while mentoring a growing team.
+Colleagues value my ability to identify the small number of decisions that
+matter most, explain tradeoffs without flattening their complexity, and carry
+good ideas through to reliable implementation.
+
+Thank you for considering my application. I would welcome the opportunity to
+discuss how my experience could support `{r} company` and its scientific
+programs.
+
+Sincerely,
+
+[Jane Doe](){.signature-name}

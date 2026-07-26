@@ -1,0 +1,101 @@
+---
+title: "Jane Doe --- Resume"
+author: "Jane Doe"
+job-title: "Quantitative Scientist · Research Software Leader"
+address: "Example City, EX"
+phone: "(000) 000-0000"
+email: "jane.doe@example.com"
+website: "janedoe.example"
+linkedin: "janedoe"
+output: html
+liteformats:
+  paper: letter
+  margins: ["0.65in", "0.8in"]
+  font-family: "Georgia, 'Times New Roman', serif"
+  font-size: 11pt
+  font-scale: 0.9
+  ligatures: false
+  line-height: 1.15
+  paragraph-spacing: 0.05em
+  section-spacing: 1em
+  link-color: "#385898"
+  paged: true
+  # To use an online font at render time:
+  # google-font: "Source Serif 4"
+  # To embed local font files instead:
+  # font-files:
+  #   regular: "fonts/MySerif-Regular.woff2"
+  #   italic: "fonts/MySerif-Italic.woff2"
+  #   bold: "fonts/MySerif-Bold.woff2"
+---
+
+## Summary
+
+- Quantitative scientist with eight years of experience turning complex evidence into practical decisions across research, product, and policy teams
+- Builder of reproducible analytical systems that connect careful statistical thinking with durable, well-documented software
+- Collaborative technical leader known for making rigorous work understandable to scientists, engineers, and decision makers
+
+## Experience
+
+::: resume-entry
+**Example Corporation** [Seattle, WA · 2022--Present](){.resume-meta}
+
+**Principal Data Scientist** [Evidence Systems](){.resume-meta}
+
+- Led a cross-functional program that standardized analysis workflows for twelve research teams, cutting review cycles while improving traceability
+- Designed reusable R and Python tools for simulation, reporting, and quality control; established documentation and release practices adopted across the organization
+- Mentored scientists and engineers on study design, statistical communication, and maintainable research software
+:::
+
+::: resume-entry
+**Example Research Institute** [Portland, OR · 2018--2022](){.resume-meta}
+
+**Senior Statistician** [Methods Group](){.resume-meta}
+
+- Developed study designs and analysis plans for observational and experimental research in collaboration with clinical and operational partners
+- Created an internal package ecosystem for validated data transformations and publication-ready outputs, reducing duplicated implementation work
+- Presented methodological findings to technical and nontechnical audiences and supported successful external collaborations
+:::
+
+::: resume-entry
+**Example University** [Boston, MA · 2015--2018](){.resume-meta}
+
+**Research Fellow** [Department of Statistics](){.resume-meta}
+
+- Investigated robust methods for high-dimensional prediction and translated the work into open source reference implementations
+- Taught graduate workshops on reproducible analysis, data visualization, and scientific programming
+:::
+
+## Education
+
+::: resume-entry
+**Example University** [Boston, MA](){.resume-meta}
+
+PhD in Statistics [2015](){.resume-meta}
+
+Dissertation: *Reliable learning from heterogeneous biomedical data*
+:::
+
+::: resume-entry
+**Example College** [Madison, WI](){.resume-meta}
+
+BSc in Mathematics, summa cum laude [2010](){.resume-meta}
+:::
+
+## Selected Open Source Projects
+
+- **lumen** --- workflow tools for reviewable statistical analyses [project site](https://example.com)
+- **clearplot** --- accessible themes and scales for scientific graphics [project site](https://example.com)
+- **trialcraft** --- simulation utilities for adaptive study designs [project site](https://example.com)
+
+## Selected Publications
+
+- J. Doe, M. Rivera, and A. Chen. Reproducible evidence systems for collaborative research. *Journal of Open Research Software*, 2025.
+- A. Chen and **J. Doe**. Robust estimation under practical data constraints. *Computational Statistics*, 2023.
+- **J. Doe** and S. Patel. Transparent simulation studies for complex designs. *The American Statistician*, 2021.
+
+## Honors & Service
+
+- Open Research Software Award, Association for Scientific Computing [2024](){.resume-meta}
+- Associate editor, *Journal of Reproducible Analytics* [2022--Present](){.resume-meta}
+- Organizer, Cascadia Statistical Computing Meetup [2019--2023](){.resume-meta}

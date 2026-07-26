@@ -3,13 +3,25 @@ Title: Lightweight Output Formats for 'litedown'
 Version: 0.0.0.9000
 Authors@R: c(
     person("Nan", "Xiao", email = "me@nanx.me", role = c("aut", "cre", "cph"),
-           comment = c(ORCID = "0000-0002-0250-5673")))
+           comment = c(ORCID = "0000-0002-0250-5673")),
+    person("Yihui", "Xie", role = c("ctb", "cph"),
+           comment = "pages.js and pages.css libraries")
+    )
 Description: A collection of lightweight, minimalist output formats and
     templates for 'litedown', including resumes, cover letters,
-    presentations, and other common document types.
+    presentations, and other common document types. Documents are rendered
+    with HTML and CSS and can be printed to PDF with a Chromium-based browser,
+    without requiring 'Pandoc' or a LaTeX installation.
 License: MIT + file LICENSE
 URL: https://nanx.me/liteformats/, https://github.com/nanxstats/liteformats
 BugReports: https://github.com/nanxstats/liteformats/issues
 Encoding: UTF-8
+Imports:
+    litedown (>= 0.10),
+    xfun (>= 0.60)
+Suggests:
+    testit
+VignetteBuilder: litedown
+SystemRequirements: Chromium, Google Chrome, or Microsoft Edge (for PDF output)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0

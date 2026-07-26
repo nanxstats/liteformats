@@ -4,9 +4,24 @@
 \name{liteformats-package}
 \alias{liteformats}
 \alias{liteformats-package}
-\title{liteformats: Lightweight Output Formats for 'litedown'}
+\title{Lightweight output formats for litedown}
 \description{
-A collection of lightweight, minimalist output formats and templates for 'litedown', including resumes, cover letters, presentations, and other common document types.
+Provides HTML-first resume and cover-letter formats with self-contained
+styling, local pages.js pagination, and optional PDF output through a
+headless Chromium-based browser.
+}
+\details{
+Start with \code{\link[=use_resume]{use_resume()}} or \code{\link[=use_cover_letter]{use_cover_letter()}}, then render with
+\code{\link[=resume]{resume()}} or \code{\link[=cover_letter]{cover_letter()}}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://nanx.me/liteformats/}
+  \item \url{https://github.com/nanxstats/liteformats}
+  \item Report bugs at \url{https://github.com/nanxstats/liteformats/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Nan Xiao \email{me@nanx.me} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID}) [copyright holder]
@@ -14,6 +29,11 @@ A collection of lightweight, minimalist output formats and templates for 'litedo
 Authors:
 \itemize{
   \item Nan Xiao \email{me@nanx.me} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID}) [copyright holder]
+}
+
+Other contributors:
+\itemize{
+  \item Yihui Xie (pages.js and pages.css libraries) [contributor, copyright holder]
 }
 
 }
