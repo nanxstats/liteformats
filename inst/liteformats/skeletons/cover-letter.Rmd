@@ -3,8 +3,8 @@ title: "Jane Doe --- Cover Letter"
 author: "Jane Doe"
 address: ["123 Example Street", "Example City, EX 00000"]
 phone: "(000) 000-0000"
-email: "jane.doe@example.com"
-website: "janedoe.example"
+email: "jane@example.com"
+website: "example.com"
 date: "`{r} format(Sys.Date(), '%B %e, %Y')`"
 greeting: "Dear Hiring Committee:"
 output: html
