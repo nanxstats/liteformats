@@ -1,6 +1,6 @@
 Package: liteformats
 Title: Lightweight Output Formats for 'litedown'
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Nan", "Xiao", email = "me@nanx.me", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0250-5673")),
@@ -8,10 +8,10 @@ Authors@R: c(
            comment = "pages.js and pages.css libraries")
     )
 Description: A collection of lightweight, minimalist output formats and
-    templates for 'litedown', including resumes, cover letters,
-    presentations, and other common document types. Documents are rendered
-    with HTML and CSS and can be printed to PDF with a Chromium-based browser,
-    without requiring 'Pandoc' or a LaTeX installation.
+    templates for 'litedown' by Xie (2026) <doi:10.32614/CRAN.package.litedown>,
+    including resumes, cover letters, and other common document types.
+    Documents are rendered with HTML and CSS and can be printed to PDF with a
+    'Chromium'-based browser, without requiring 'Pandoc' or a 'LaTeX' installation.
 License: MIT + file LICENSE
 URL: https://nanx.me/liteformats/, https://github.com/nanxstats/liteformats
 BugReports: https://github.com/nanxstats/liteformats/issues
