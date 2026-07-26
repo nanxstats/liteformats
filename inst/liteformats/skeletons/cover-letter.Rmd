@@ -2,7 +2,7 @@
 title: "Jane Doe --- Cover Letter"
 author: "Jane Doe"
 address: ["123 Example Street", "Example City, EX 00000"]
-phone: "(206) 555-0142"
+phone: "(000) 000-0000"
 email: "jane.doe@example.com"
 website: "janedoe.example"
 date: "`{r} format(Sys.Date(), '%B %e, %Y')`"
