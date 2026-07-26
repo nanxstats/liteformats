@@ -7,6 +7,7 @@ output:
 vignette: >
   %\VignetteEngine{litedown::vignette}
   %\VignetteIndexEntry{Resumes and cover letters}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # Start from Markdown
