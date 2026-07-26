@@ -31,5 +31,10 @@ Authors:
   \item Nan Xiao \email{me@nanx.me} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID}) [copyright holder]
 }
 
+Other contributors:
+\itemize{
+  \item Yihui Xie (pages.js and pages.css libraries) [contributor, copyright holder]
+}
+
 }
 \keyword{internal}
