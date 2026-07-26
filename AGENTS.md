@@ -33,6 +33,9 @@
 - Keep the cover letter's letterhead and body in two columns at every viewport
   width. It is a fixed-page composition, and narrow IDE preview panes must not
   trigger a single-column responsive layout.
+- Read `tools/template-styling.md` before changing resume list CSS. Test the
+  actual CommonMark HTML in unpaged HTML, pages.js output, and PDF because list
+  structure, browser defaults, and pagination all affect spacing and markers.
 - Do not redistribute any local fonts: no redistributable license was found.
   They may be used locally for visual comparison only.
 
