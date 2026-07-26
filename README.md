@@ -39,7 +39,7 @@ resume("resume.Rmd", "resume.pdf")
 
 ### Cover letter
 
-Use the matching `cover_letter()` renderer for the cover-letter starter:
+Use the matching `cover_letter()` renderer for the cover letter starter:
 
 ``` r
 use_cover_letter("cover-letter.Rmd")
