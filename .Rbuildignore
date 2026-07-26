@@ -2,8 +2,9 @@
 ^\.Rproj\.user$
 
 ^\.github$
-^vendor$
 ^docs$
 ^pkgdown$
+^vendor$
 ^_pkgdown\.yml$
+^AGENTS\.md$
 ^LICENSE\.md$
