@@ -22,7 +22,7 @@ liteformats::resume("resume.Rmd", "resume.html")
 liteformats::resume("resume.Rmd", "resume.pdf")
 ```
 
-For a cover letter, use the cover-letter starter and its matching renderer:
+For a cover letter, use the cover letter starter and its matching renderer:
 
 ```{r}
 #| eval = FALSE

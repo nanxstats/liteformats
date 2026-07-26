@@ -226,8 +226,10 @@ lets <code><a href="https://rdrr.io/cran/xfun/man/browser_print.html">xfun::brow
 <p>The normalized output path, invisibly.
 </p>
 <h3 id="sec:examples_1" class="unnumbered unlisted">Examples</h3>
-<pre><code class="language-r fade">source &lt;- use_cover_letter(&quot;cover-letter.Rmd&quot;)
-cover_letter(source, &quot;cover-letter.html&quot;)
+<pre><code class="language-r">source &lt;- use_cover_letter(tempfile(fileext = &quot;.Rmd&quot;))
+cover_letter(source, tempfile(fileext = &quot;.html&quot;))
+</code></pre>
+<pre><code class="language-r fade"># PDF output requires a local Chromium-based browser
 cover_letter(source, &quot;cover-letter.pdf&quot;)
 </code></pre>
 <h2 id="sec:man-resume"><span class="section-number main-number">3</span> Render a resume</h2>
@@ -368,10 +370,13 @@ header. Renderer arguments take precedence over YAML. See
 <p>The normalized output path, invisibly.
 </p>
 <h3 id="sec:examples_2" class="unnumbered unlisted">Examples</h3>
-<pre><code class="language-r fade">source &lt;- use_resume(&quot;resume.Rmd&quot;)
-resume(source)
+<pre><code class="language-r">source &lt;- use_resume(tempfile(fileext = &quot;.Rmd&quot;))
+resume(source, tempfile(fileext = &quot;.html&quot;))
+</code></pre>
+<pre><code class="language-r fade"># PDF output requires a local Chromium-based browser
 resume(source, &quot;resume.pdf&quot;)
 
+# Embed local font files
 resume(
   source,
   font_files = c(
@@ -408,8 +413,8 @@ use_cover_letter(path = "cover-letter.Rmd", overwrite = FALSE)</code></pre>
 <p>The normalized destination path, invisibly.
 </p>
 <h3 id="sec:examples_3" class="unnumbered unlisted">Examples</h3>
-<pre><code class="language-r fade">use_resume(&quot;resume.Rmd&quot;)
-use_cover_letter(&quot;cover-letter.Rmd&quot;)
+<pre><code class="language-r">use_resume(tempfile(fileext = &quot;.Rmd&quot;))
+use_cover_letter(tempfile(fileext = &quot;.Rmd&quot;))
 </code></pre>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.14.69/css/manual.min.css">
 </div>
