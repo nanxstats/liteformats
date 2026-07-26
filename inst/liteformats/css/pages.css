@@ -10,21 +10,17 @@
   --page-footer-height: 40px;
   --page-footer-top: 40px;
 }
-
 @page {
   size: var(--paper-width) var(--paper-height);
   margin: 0;
 }
-
 @page multiple {
   margin-top: var(--paper-margin-top);
   margin-bottom: var(--paper-margin-bottom);
 }
-
 .page-multiple {
   page: multiple;
 }
-
 .pagesjs {
   padding: 0;
   max-width: 100%;
@@ -33,18 +29,13 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 5mm;
-
-  .frontmatter,
-  .chapter {
+  .frontmatter, .chapter {
     min-height: unset;
     box-shadow: none;
   }
-
-  &>*,
-  &:not(:has(.frontmatter)):has(.chapter-toc) #TOC:not(.chapter-toc) {
+  & > *, &:not(:has(.frontmatter)):has(.chapter-toc) #TOC:not(.chapter-toc) {
     display: none;
   }
-
   .pagesjs-page {
     width: var(--paper-width);
     height: var(--paper-height);
@@ -54,22 +45,16 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-
     img {
       max-width: 100%;
     }
-
-    .chapter-before,
-    .chapter-after,
-    .buttons:has(+ .chapter-before) {
+    .chapter-before, .chapter-after, .buttons:has(+ .chapter-before) {
       display: none;
     }
-
     #TOC {
       border: none;
       padding: 0;
       margin-left: auto;
-
       &:not(.chapter-toc):is(.fragment-first, :not(.pagesjs-fragmented))::before {
         content: "Contents";
         display: block;
@@ -77,25 +62,20 @@
         font-size: 1.5em;
         margin-bottom: 1em;
       }
-
       a {
         display: flex;
-
         &::after {
           content: attr(data-page-number);
           align-self: end;
           margin-left: 1ch;
         }
-
         .section-number {
           margin-right: .3em;
         }
-
         .toc-text {
           position: relative;
           flex: 1 0;
           overflow: hidden;
-
           &::after {
             content: "";
             width: 100%;
@@ -107,33 +87,20 @@
         }
       }
     }
-
-    &>.pagesjs-body>.pagesjs-fragmented {
+    & > .pagesjs-body > .pagesjs-fragmented {
       &:not(.fragment-first) {
-
-        &,
-        & .pagesjs-fragmented {
+        &, & .pagesjs-fragmented {
           border-top: none;
-
-          &>thead {
-            opacity: .5;
-          }
+          & > thead { opacity: .5; }
         }
       }
-
       &:not(.fragment-last) {
-
-        &,
-        & .pagesjs-fragmented {
+        &, & .pagesjs-fragmented {
           border-bottom: none;
-
-          &>tfoot {
-            opacity: .5;
-          }
+          & > tfoot { opacity: .5; }
         }
       }
     }
-
     .fullwidth {
       float: none;
       max-width: none;
@@ -141,97 +108,76 @@
       margin-left: calc(0px - var(--paper-margin-left));
       transform: none;
     }
-
     .footnotes::before {
       content: "";
       display: block;
       max-width: 20em;
       border-top: solid 1px;
     }
-
     &:has(.side-left, .embed-left) .pagesjs-body {
       padding-left: calc(0px - var(--side-margin));
-
       .fullwidth {
         transform: translate(var(--side-margin));
       }
     }
-
     &:has(.side-right, .embed-right) .pagesjs-body {
       padding-right: calc(0px - var(--side-margin));
     }
-
     .side {
       font-size: .9em;
       background: none;
     }
   }
 }
-
-.pagesjs-header,
-.pagesjs-footer {
+.pagesjs-header, .pagesjs-footer {
   font-size: .9em;
   display: flex;
   justify-content: space-between;
 }
-
 .pagesjs-header {
   flex: 0 0 var(--page-header-height);
   margin-bottom: var(--page-header-bottom);
   align-items: end;
-
   &::before {
     content: attr(data-main-title);
   }
-
   &::after {
     content: attr(data-page-title);
   }
 }
-
 .pagesjs-footer {
   flex: 0 0 var(--page-footer-height);
   margin-top: var(--page-footer-top);
   align-items: start;
-
   &::before {
     content: " ";
   }
-
   &::after {
     content: attr(data-page-number);
   }
 }
-
 .pagesjs-body {
   flex-grow: 1;
   position: relative;
 }
-
 @media only screen {
   .pagesjs {
     &:has(.pagesjs-page) {
       background: #f7f7f7;
     }
-
     .pagesjs-page {
       background: white;
     }
-
     .page-multiple {
       overflow-y: auto;
     }
   }
-
   .pagesjs-filling {
     display: block;
-
     .pagesjs-page {
       height: auto;
-
       .pagesjs-body:has(.footnotes) {
         margin-bottom: 1em;
-
         .footnotes {
           float: left;
           width: 100%;
@@ -240,12 +186,10 @@
     }
   }
 }
-
 @media print {
   .pagesjs {
     margin: 0;
     gap: 0;
-
     .page-multiple {
       padding-top: 0;
       padding-bottom: 0;
