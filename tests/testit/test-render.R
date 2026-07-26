@@ -26,7 +26,7 @@ assert("cover-letter starter renders its semantic columns", {
   (grepl('class="cover-sidebar"', html, fixed = TRUE))
   (grepl(".cover-layout {\n  display: grid;", html, fixed = TRUE))
   (!grepl(".cover-layout {\n    display: block;", html, fixed = TRUE))
-  (grepl("Aperture Biotherapeutics", html, fixed = TRUE))
+  (grepl("Acme Corporation", html, fixed = TRUE))
   (grepl("Dear Hiring Committee:", html, fixed = TRUE))
 })
 

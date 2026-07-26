@@ -38,7 +38,7 @@ liteformats:
 ## Experience
 
 ::: resume-entry
-**Northstar Health Analytics** [Seattle, WA · 2022--Present](){.resume-meta}
+**Example Corporation** [Seattle, WA · 2022--Present](){.resume-meta}
 
 **Principal Data Scientist** [Evidence Systems](){.resume-meta}
 
@@ -48,7 +48,7 @@ liteformats:
 :::
 
 ::: resume-entry
-**Cedar Research Institute** [Portland, OR · 2018--2022](){.resume-meta}
+**Example Research Institute** [Portland, OR · 2018--2022](){.resume-meta}
 
 **Senior Statistician** [Methods Group](){.resume-meta}
 
@@ -58,7 +58,7 @@ liteformats:
 :::
 
 ::: resume-entry
-**Harbor University** [Boston, MA · 2015--2018](){.resume-meta}
+**Example University** [Boston, MA · 2015--2018](){.resume-meta}
 
 **Research Fellow** [Department of Statistics](){.resume-meta}
 
@@ -69,7 +69,7 @@ liteformats:
 ## Education
 
 ::: resume-entry
-**Harbor University** [Boston, MA](){.resume-meta}
+**Example University** [Boston, MA](){.resume-meta}
 
 PhD in Statistics [2015](){.resume-meta}
 
@@ -77,7 +77,7 @@ Dissertation: *Reliable learning from heterogeneous biomedical data*
 :::
 
 ::: resume-entry
-**Lakeview College** [Madison, WI](){.resume-meta}
+**Example College** [Madison, WI](){.resume-meta}
 
 BSc in Mathematics, summa cum laude [2010](){.resume-meta}
 :::

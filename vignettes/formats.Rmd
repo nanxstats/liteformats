@@ -110,7 +110,7 @@ without LaTeX:
 
 ``` markdown
 ::: resume-entry
-**Northstar Health Analytics** [Seattle, WA · 2022--Present](){.resume-meta}
+**Example Corporation** [Seattle, WA · 2022--Present](){.resume-meta}
 
 **Principal Data Scientist** [Evidence Systems](){.resume-meta}
 

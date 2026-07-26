@@ -28,7 +28,7 @@ liteformats:
 
 ```{r}
 #| include = FALSE
-company <- "Aperture Biotherapeutics"
+company <- "Acme Corporation"
 role <- "Director of Data Science"
 ```
 
@@ -39,7 +39,7 @@ settings, I have led multidisciplinary programs, developed reproducible
 analytical infrastructure, and helped teams communicate evidence clearly enough
 to support consequential decisions.
 
-At Northstar Health Analytics, I established a shared workflow for study design,
+At Example Corporation, I established a shared workflow for study design,
 analysis, review, and reporting across twelve research teams. The work combined
 methodological judgment with practical engineering: I designed the technical
 architecture, built core R and Python components, created validation and release
