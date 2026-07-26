@@ -1,0 +1,83 @@
+:root {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f2f1ee;
+}
+
+body.liteformats-document {
+  color: #171717;
+  font-family: var(--lf-font-family);
+  font-size: var(--lf-font-size);
+  line-height: var(--lf-line-height);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+body.liteformats-document:not(.pagesjs) {
+  width: var(--paper-width);
+  min-height: var(--paper-height);
+  margin: 1.5rem auto;
+  padding: var(--paper-margin-top) var(--paper-margin-right) var(--paper-margin-bottom) var(--paper-margin-left);
+  background: white;
+  box-shadow: 0 0.2rem 1.5rem rgb(0 0 0 / 12%);
+}
+
+.liteformats-document a {
+  color: var(--lf-link-color);
+  text-decoration: none;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
+}
+
+.liteformats-document a:hover,
+.liteformats-document a:focus-visible {
+  text-decoration: underline;
+}
+
+.liteformats-document p {
+  orphans: 3;
+  widows: 3;
+}
+
+.liteformats-document img {
+  max-width: 100%;
+}
+
+.liteformats-document .pagesjs-header,
+.liteformats-document .pagesjs-footer {
+  display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    background: white;
+  }
+
+  body.liteformats-document:not(.pagesjs) {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: max(1.25rem, var(--paper-margin-top)) max(1.25rem, var(--paper-margin-right)) max(1.25rem, var(--paper-margin-bottom)) max(1.25rem, var(--paper-margin-left));
+    box-shadow: none;
+  }
+}
+
+@media print {
+  html {
+    background: white;
+  }
+
+  body.liteformats-document {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

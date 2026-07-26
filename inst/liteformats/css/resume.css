@@ -1,0 +1,144 @@
+.resume-header {
+  margin: 0 0 0.65em;
+}
+
+.resume-name {
+  margin: 0;
+  font-size: 2.05em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.resume-job-title {
+  margin-top: 0.35em;
+  font-size: 1.05em;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.05em 0.5em;
+  margin: 0.55em 0 0;
+  padding: 0;
+  font-size: 1.05em;
+  line-height: 1.25;
+  list-style: none;
+}
+
+.resume-contact span {
+  display: inline;
+  padding: 0;
+  list-style: none;
+}
+
+.resume-contact span:not(:last-child)::after {
+  margin-left: 0.5em;
+  color: #777;
+  content: "·";
+}
+
+.liteformats-resume h2 {
+  margin: var(--lf-section-spacing) 0 0.35em;
+  padding: 0 0 0.2em;
+  border-bottom: 0.075em solid currentcolor;
+  font-size: 1.42em;
+  line-height: 1.08;
+  break-after: avoid;
+}
+
+.liteformats-resume h2:first-of-type {
+  margin-top: 0.35em;
+}
+
+.liteformats-resume h3,
+.liteformats-resume h4 {
+  margin: 0.7em 0 0.2em;
+  font-size: 1em;
+  line-height: 1.15;
+  break-after: avoid;
+}
+
+.liteformats-resume p {
+  margin: 0 0 var(--lf-paragraph-spacing);
+}
+
+.resume-body ul,
+.resume-body ol,
+.resume-entry ul,
+.resume-entry ol {
+  margin: 0.25em 0 0.5em;
+  padding-left: 1.15em;
+}
+
+.resume-body ul,
+.resume-entry ul {
+  list-style-type: disc;
+}
+
+.resume-body ul ul,
+.resume-entry ul ul {
+  list-style-type: circle;
+}
+
+.resume-body li,
+.resume-entry li,
+.resume-entry ol li {
+  margin: 0.08em 0;
+  padding-left: 0.08em;
+}
+
+.resume-body li>ul,
+.resume-body li>ol,
+.resume-entry li>ul,
+.resume-entry li>ol {
+  margin-top: 0.08em;
+  margin-bottom: 0.15em;
+}
+
+.resume-entry {
+  margin: 0 0 0.55em;
+}
+
+.resume-entry>p:first-child {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.08em;
+  break-after: avoid;
+}
+
+.resume-entry>p:nth-child(2) {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+  justify-content: space-between;
+  break-after: avoid;
+}
+
+.resume-meta {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 0.96em;
+  font-weight: 400;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.resume-compact {
+  margin-bottom: 0.2em;
+}
+
+@media only screen and (max-width: 700px) {
+  body.liteformats-document:not(.pagesjs) .resume-entry>p:first-child {
+    display: block;
+  }
+
+  body.liteformats-document:not(.pagesjs) .resume-meta {
+    display: block;
+    margin: 0.1em 0 0;
+    text-align: left;
+    white-space: normal;
+  }
+}
