@@ -8,6 +8,8 @@ Description: A collection of lightweight, minimalist output formats and
     templates for 'litedown', including resumes, cover letters,
     presentations, and other common document types.
 License: MIT + file LICENSE
+URL: https://nanx.me/liteformats/, https://github.com/nanxstats/liteformats
+BugReports: https://github.com/nanxstats/liteformats/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
