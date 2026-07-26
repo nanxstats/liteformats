@@ -1,4 +1,5 @@
 ^liteformats\.Rproj$
 ^\.Rproj\.user$
 
+^vendor$
 ^LICENSE\.md$
