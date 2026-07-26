@@ -9,10 +9,8 @@
 #' @return The normalized destination path, invisibly.
 #' @export
 #' @examples
-#' \dontrun{
-#' use_resume("resume.Rmd")
-#' use_cover_letter("cover-letter.Rmd")
-#' }
+#' use_resume(tempfile(fileext = ".Rmd"))
+#' use_cover_letter(tempfile(fileext = ".Rmd"))
 use_resume <- function(path = "resume.Rmd", overwrite = FALSE) {
   use_liteformat_template("resume", path, overwrite)
 }

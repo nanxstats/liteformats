@@ -23,8 +23,6 @@ the rendered formats remain inside the installed package; the copied source
 contains only Markdown content and YAML settings.
 }
 \examples{
-\dontrun{
-use_resume("resume.Rmd")
-use_cover_letter("cover-letter.Rmd")
-}
+use_resume(tempfile(fileext = ".Rmd"))
+use_cover_letter(tempfile(fileext = ".Rmd"))
 }

@@ -101,11 +101,14 @@ header. Renderer arguments take precedence over YAML. See
 \code{use_resume()} for a complete starter document.
 }
 \examples{
+source <- use_resume(tempfile(fileext = ".Rmd"))
+resume(source, tempfile(fileext = ".html"))
+
 \dontrun{
-source <- use_resume("resume.Rmd")
-resume(source)
+# PDF output requires a local Chromium-based browser
 resume(source, "resume.pdf")
 
+# Embed local font files
 resume(
   source,
   font_files = c(

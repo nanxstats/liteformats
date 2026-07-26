@@ -96,9 +96,11 @@ left column holds the sender's details, while the letter remains the visual
 foreground in the wider right column.
 }
 \examples{
+source <- use_cover_letter(tempfile(fileext = ".Rmd"))
+cover_letter(source, tempfile(fileext = ".html"))
+
 \dontrun{
-source <- use_cover_letter("cover-letter.Rmd")
-cover_letter(source, "cover-letter.html")
+# PDF output requires a local Chromium-based browser
 cover_letter(source, "cover-letter.pdf")
 }
 }

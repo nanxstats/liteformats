@@ -46,11 +46,14 @@
 #' @return The normalized output path, invisibly.
 #' @export
 #' @examples
+#' source <- use_resume(tempfile(fileext = ".Rmd"))
+#' resume(source, tempfile(fileext = ".html"))
+#'
 #' \dontrun{
-#' source <- use_resume("resume.Rmd")
-#' resume(source)
+#' # PDF output requires a local Chromium-based browser
 #' resume(source, "resume.pdf")
 #'
+#' # Embed local font files
 #' resume(
 #'   source,
 #'   font_files = c(
@@ -134,9 +137,11 @@ resume <- function(
 #' @return The normalized output path, invisibly.
 #' @export
 #' @examples
+#' source <- use_cover_letter(tempfile(fileext = ".Rmd"))
+#' cover_letter(source, tempfile(fileext = ".html"))
+#'
 #' \dontrun{
-#' source <- use_cover_letter("cover-letter.Rmd")
-#' cover_letter(source, "cover-letter.html")
+#' # PDF output requires a local Chromium-based browser
 #' cover_letter(source, "cover-letter.pdf")
 #' }
 cover_letter <- function(
