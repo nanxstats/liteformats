@@ -1,0 +1,25 @@
+# liteformats
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of liteformats is to ...
+
+## Installation
+
+You can install the development version of liteformats from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("nanxstats/liteformats")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(liteformats)
+## basic example code
+```
+
