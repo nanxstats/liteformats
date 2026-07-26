@@ -26,3 +26,5 @@
 
 - Vendored the MIT-licensed pages.js runtime for offline builds and added a
   maintainer script that refreshes it from the upstream source archive.
+- Credited the author and copyright holder of the bundled pages.js assets in
+  `Authors@R`, and documented template styling lessons for maintainers.
