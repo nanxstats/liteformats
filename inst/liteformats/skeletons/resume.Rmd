@@ -4,9 +4,9 @@ author: "Jane Doe"
 job-title: "Quantitative Scientist · Research Software Leader"
 address: "Example City, EX"
 phone: "(000) 000-0000"
-email: "jane.doe@example.com"
-website: "janedoe.example"
-linkedin: "janedoe"
+email: "jane@example.com"
+website: "example.com"
+linkedin: "example"
 output: html
 liteformats:
   paper: letter
