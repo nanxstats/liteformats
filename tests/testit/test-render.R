@@ -11,6 +11,7 @@ assert("resume starter renders to offline, self-contained HTML", {
   (grepl("pagesjs:after", html, fixed = TRUE))
   (!grepl("cdn.jsdelivr.net", html, fixed = TRUE))
   (!grepl("fonts.googleapis.com", html, fixed = TRUE))
+  (grepl("Example City, EX", html, fixed = TRUE))
 })
 
 assert("cover-letter starter renders its semantic columns", {
@@ -27,6 +28,8 @@ assert("cover-letter starter renders its semantic columns", {
   (grepl(".cover-layout {\n  display: grid;", html, fixed = TRUE))
   (!grepl(".cover-layout {\n    display: block;", html, fixed = TRUE))
   (grepl("Acme Corporation", html, fixed = TRUE))
+  (grepl("123 Example Street", html, fixed = TRUE))
+  (grepl("Example City, EX 00000", html, fixed = TRUE))
   (grepl("Dear Hiring Committee:", html, fixed = TRUE))
 })
 

@@ -124,5 +124,5 @@ details, date, and greeting come from YAML, while the letter itself remains
 plain Markdown. The template keeps the letterhead and body in two columns,
 including in narrow browser or IDE preview panes. Use a YAML list for a
 multiline address, for example
-`address: ["1847 Alder Street", "Seattle, WA 98101"]`; litedown's intentionally
+`address: ["123 Example Street", "Example City, EX 00000"]`; litedown's intentionally
 small YAML parser does not implement block scalars.
