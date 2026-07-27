@@ -19,6 +19,7 @@ liteformats:
   paragraph-spacing: 1em
   link-color: "#385898"
   paged: true
+  # To use an online font at render time:
   # google-font: "Source Serif 4"
   # font-files:
   #   regular: "fonts/MySerif-Regular.woff2"
