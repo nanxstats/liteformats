@@ -24,6 +24,11 @@
 <div class="body">
 <div id="TOC">
 <ul>
+<li><a href="#sec:liteformats-development-version">liteformats (development version)</a>
+<ul>
+<li><a href="#sec:bug-fixes">Bug fixes</a></li>
+</ul>
+</li>
 <li><a href="#sec:liteformats-0-1-0">liteformats 0.1.0</a>
 <ul>
 <li><a href="#sec:new-features">New features</a></li>
@@ -34,6 +39,15 @@
 </li>
 </ul>
 </div>
+<h2 id="sec:liteformats-development-version" class="unnumbered">liteformats (development version)</h2>
+<h3 id="sec:bug-fixes" class="unnumbered">Bug fixes</h3>
+<ul>
+<li>Fixed overly aggressive resume pagination that treated complete experiences
+and list-based sections as indivisible, leaving large gaps at page bottoms.
+Resume entries now fill the available page and continue across pages at
+normal paragraph and list boundaries while retaining compact list
+indentation (#8).</li>
+</ul>
 <h2 id="sec:liteformats-0-1-0" class="unnumbered">liteformats 0.1.0</h2>
 <h3 id="sec:new-features" class="unnumbered">New features</h3>
 <ul>
