@@ -27,6 +27,7 @@
 <li><a href="#sec:liteformats-development-version">liteformats (development version)</a>
 <ul>
 <li><a href="#sec:bug-fixes">Bug fixes</a></li>
+<li><a href="#sec:improvements">Improvements</a></li>
 </ul>
 </li>
 <li><a href="#sec:liteformats-0-1-0">liteformats 0.1.0</a>
@@ -47,6 +48,15 @@ and list-based sections as indivisible, leaving large gaps at page bottoms.
 Resume entries now fill the available page and continue across pages at
 normal paragraph and list boundaries while retaining compact list
 indentation (#8).</li>
+</ul>
+<h3 id="sec:improvements" class="unnumbered">Improvements</h3>
+<ul>
+<li>Refactored opt-in Google Fonts loading to use bundled font metadata.
+Font family names now request the available weights and styles needed for
+regular, bold, italic, and bold-italic text, prefer variable weight and
+slant ranges, and omit unsupported combinations. Full CSS v2 URLs remain
+supported for custom axes and newer families. A maintainer script was added
+to refresh the catalog without Google API credentials (#10).</li>
 </ul>
 <h2 id="sec:liteformats-0-1-0" class="unnumbered">liteformats 0.1.0</h2>
 <h3 id="sec:new-features" class="unnumbered">New features</h3>

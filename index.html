@@ -44,7 +44,7 @@
 </tr>
 <tr>
 <td>Version</td>
-<td>0.1.0.9000</td>
+<td>0.1.0.9001</td>
 </tr>
 <tr>
 <td>Description</td>
@@ -81,7 +81,7 @@ xfun (&gt;= 0.60)</td>
 </tr>
 <tr>
 <td>Author</td>
-<td>Nan Xiao <a href="https://orcid.org/0000-0002-0250-5673"><img src="https://cloud.r-project.org/web/orcid.svg" alt="ORCID iD" class="orcid" /></a> [aut, cre, cph], Yihui Xie [ctb, cph]</td>
+<td>Nan Xiao <a href="https://orcid.org/0000-0002-0250-5673"><img src="https://cloud.r-project.org/web/orcid.svg" alt="ORCID iD" class="orcid" /></a> [aut, cre, cph], Yihui Xie [ctb, cph], Ayuhito  [ctb, cph]</td>
 </tr>
 </tbody></table>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.14.69/css/manual.min.css">
@@ -164,22 +164,38 @@ needed to shape the documents into a particular look.</p>
   ligatures = FALSE
 )
 </code></pre>
-<p>Set <code>google_font = &quot;Source Serif 4&quot;</code> to opt into a Google Fonts request at
-render time. Package installation, checks, examples, and vignettes never need
-network access.</p>
+<p>Set <code>google_font = &quot;Source Serif 4&quot;</code> to opt into Google Fonts at render time.
+liteformats uses a bundled font catalog to request the available weights and
+styles needed for regular, bold, italic, and bold-italic text. For a variable
+font, it requests the smallest weight range covering regular and bold;
+unsupported combinations are omitted instead of making the whole Google Fonts
+request fail. A full CSS v2 URL is accepted when you need different weights or
+axes:</p>
+<pre><code class="language-r">resume(
+  &quot;resume.Rmd&quot;,
+  google_font = paste0(
+    &quot;https://fonts.googleapis.com/css2?&quot;,
+    &quot;family=Inter:ital,opsz,wght@0,14..32,100..900;&quot;,
+    &quot;1,14..32,100..900&amp;display=swap&quot;
+  )
+)
+</code></pre>
+<p>The full-URL form also supports families newer than the bundled catalog.
+Google Fonts remains deliberately opt-in. Package installation, checks,
+examples, and vignettes never need network access.</p>
 <p>Ligatures are disabled by default, but PDF text extraction can also depend on
 the selected font’s internal tables. When ATS parsing matters, inspect the
 result with a tool such as <code>pdftotext resume.pdf -</code> before submitting it.</p>
 <h2 id="sec:appendix" class="appendix">Appendix</h2>
 <p>To cite the package <strong>liteformats</strong> in publications, please use:</p>
 <p>Xiao N (2026). <em>liteformats: Lightweight Output Formats for
-‘litedown’</em>. R package version 0.1.0.9000,
+‘litedown’</em>. R package version 0.1.0.9001,
 <a href="https://nanx.me/liteformats/">https://nanx.me/liteformats/</a>.</p>
 <pre><code class="language-latex">@Manual{,
   title = {liteformats: Lightweight Output Formats for 'litedown'},
   author = {Nan Xiao},
   year = {2026},
-  note = {R package version 0.1.0.9000},
+  note = {R package version 0.1.0.9001},
   url = {https://nanx.me/liteformats/},
 }
 </code></pre>

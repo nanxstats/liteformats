@@ -79,6 +79,9 @@ headless Chromium-based browser.
 <ul>
 <li><p> Yihui Xie (pages.js and pages.css libraries) [contributor, copyright holder]
 </p>
+</li>
+<li><p> Ayuhito (google-font-metadata catalog) [contributor, copyright holder]
+</p>
 </li></ul>
 <h3 id="sec:see-also" class="unnumbered unlisted">See Also</h3>
 <p>Useful links:
@@ -154,10 +157,11 @@ corresponding value in the source document's YAML header.</p>
 </td></tr>
 <tr><td><code>google_font</code></td>
 <td>
-<p>A Google Fonts family name or a full Google Fonts CSS URL.
-This is an explicit online resource and is never used by default. A family
-name loads its default face; pass a full URL plus the matching
-<code>font_family</code> when specific axes or weights are required.</p>
+<p>A Google Fonts family name or a full Google Fonts CSS v2
+URL. This is an explicit online resource and is never used by default.
+A family name loads the available weights and styles needed for regular,
+bold, italic, and bold italic text, preferring a variable weight range.
+Supply a full URL to select other weights, axes, or options.</p>
 </td></tr>
 <tr><td><code>font_files</code></td>
 <td>
@@ -293,10 +297,11 @@ corresponding value in the source document's YAML header.</p>
 </td></tr>
 <tr><td><code>google_font</code></td>
 <td>
-<p>A Google Fonts family name or a full Google Fonts CSS URL.
-This is an explicit online resource and is never used by default. A family
-name loads its default face; pass a full URL plus the matching
-<code>font_family</code> when specific axes or weights are required.</p>
+<p>A Google Fonts family name or a full Google Fonts CSS v2
+URL. This is an explicit online resource and is never used by default.
+A family name loads the available weights and styles needed for regular,
+bold, italic, and bold italic text, preferring a variable weight range.
+Supply a full URL to select other weights, axes, or options.</p>
 </td></tr>
 <tr><td><code>font_files</code></td>
 <td>

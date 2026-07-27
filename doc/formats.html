@@ -181,9 +181,23 @@ which keeps HTML portable and lets PDF rendering work offline.</p>
 )
 </code></pre>
 <p>Alternatively, <code>google_font = &quot;Source Serif 4&quot;</code> adds a Google Fonts stylesheet.
-This option is deliberately opt-in because it requires internet access when the
-document is rendered. A full Google Fonts CSS URL can select explicit weights
-or variable-font axes; also set <code>font_family</code> to the matching family name.</p>
+liteformats consults its bundled catalog and requests the available weights and
+styles needed for regular, bold, italic, and bold-italic text. It uses a
+variable weight range when the family provides one and omits unsupported
+combinations, so the CSS API request remains valid. This option is deliberately
+opt-in because it requires internet access when the document is rendered.</p>
+<p>A full Google Fonts CSS v2 URL overrides the catalog-derived request and can
+select explicit weights or variable axes:</p>
+<pre><code class="language-r">liteformats::resume(
+  &quot;resume.Rmd&quot;,
+  google_font = paste0(
+    &quot;https://fonts.googleapis.com/css2?&quot;,
+    &quot;family=Inter:ital,opsz,wght@0,14..32,100..900;&quot;,
+    &quot;1,14..32,100..900&amp;display=swap&quot;
+  )
+)
+</code></pre>
+<p>The full-URL form also supports families newer than the bundled catalog.</p>
 <p>Disabling ligatures prevents a common text-extraction problem, but an embedded
 font’s own tables can also affect PDF extraction. For ATS-sensitive documents,
 check the final result with a tool such as <code>pdftotext resume.pdf -</code>.</p>
