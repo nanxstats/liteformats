@@ -34,6 +34,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Yihui Xie (pages.js and pages.css libraries) [contributor, copyright holder]
+  \item Ayuhito (google-font-metadata catalog) [contributor, copyright holder]
 }
 
 }

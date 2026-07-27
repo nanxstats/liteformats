@@ -47,6 +47,63 @@ assert("page dimensions and shorthand margins are normalized", {
   (scale_css_length("11pt", 0.9) == "9.9pt")
 })
 
+assert("Google Fonts requests use the available essential faces", {
+  lato <- google_font("Lato")
+  inter <- google_font("Inter")
+  linden <- google_font("Linden Hill")
+  cardo <- google_font("Cardo")
+  recursive <- google_font("Recursive")
+  custom <- google_font(paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Inter:ital,opsz,wght@0,14..32,100..900;",
+    "1,14..32,100..900&display=swap"
+  ))
+  unknown <- try(google_font("A Font From The Future"), silent = TRUE)
+
+  (lato$url == paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  ))
+  (inter$url == paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Inter:ital,wght@0,400..700;1,400..700&display=swap"
+  ))
+  (linden$url == paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Linden+Hill:ital@0;1&display=swap"
+  ))
+  (cardo$url == paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Cardo:ital,wght@0,400;0,700;1,400&display=swap"
+  ))
+  (recursive$url == paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Recursive:slnt,wght@-15..0,400..700&display=swap"
+  ))
+  (custom$family == "Inter")
+  (inherits(unknown, "try-error"))
+  (grepl("not in the bundled catalog", as.character(unknown), fixed = TRUE))
+})
+
+assert("Google Fonts are applied to rendered documents", {
+  directory <- tempfile("liteformats-google-font-")
+  dir.create(directory)
+  on.exit(unlink(directory, recursive = TRUE), add = TRUE)
+  input <- use_cover_letter(file.path(directory, "letter.Rmd"))
+  output <- cover_letter(input, google_font = "Lato", paged = FALSE)
+  html <- paste(readLines(output, warn = FALSE), collapse = "\n")
+
+  (grepl(
+    paste0(
+      "family=Lato:ital,wght@0,400;0,700;1,400;1,700",
+      "&amp;display=swap"
+    ),
+    html,
+    fixed = TRUE
+  ))
+  (grepl('--lf-font-family:"Lato", Georgia,', html, fixed = TRUE))
+})
+
 assert("starter creation protects existing files", {
   directory <- tempfile("liteformats-copy-")
   dir.create(directory)

@@ -8,6 +8,15 @@
   normal paragraph and list boundaries while retaining compact list
   indentation (#8).
 
+## Improvements
+
+- Refactored opt-in Google Fonts loading to use bundled font metadata.
+  Font family names now request the available weights and styles needed for
+  regular, bold, italic, and bold-italic text, prefer variable weight and
+  slant ranges, and omit unsupported combinations. Full CSS v2 URLs remain
+  supported for custom axes and newer families. A maintainer script was added
+  to refresh the catalog without Google API credentials (#10).
+
 # liteformats 0.1.0
 
 ## New features
