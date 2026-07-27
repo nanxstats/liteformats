@@ -46,10 +46,11 @@ corresponding value in the source document's YAML header.}
 \item{font_family}{A CSS \code{font-family} value. For example,
 \code{"Charter, Georgia, serif"}.}
 
-\item{google_font}{A Google Fonts family name or a full Google Fonts CSS URL.
-This is an explicit online resource and is never used by default. A family
-name loads its default face; pass a full URL plus the matching
-\code{font_family} when specific axes or weights are required.}
+\item{google_font}{A Google Fonts family name or a full Google Fonts CSS v2
+URL. This is an explicit online resource and is never used by default.
+A family name loads the available weights and styles needed for regular,
+bold, italic, and bold italic text, preferring a variable weight range.
+Supply a full URL to select other weights, axes, or options.}
 
 \item{font_files}{A named character vector or list of local font files. Names
 may be \code{regular}, \code{italic}, \code{bold}, and \code{bold_italic}. Relative paths are

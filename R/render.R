@@ -16,10 +16,11 @@
 #' @param job_title,linkedin Resume-specific professional and contact metadata.
 #' @param font_family A CSS `font-family` value. For example,
 #'   `"Charter, Georgia, serif"`.
-#' @param google_font A Google Fonts family name or a full Google Fonts CSS URL.
-#'   This is an explicit online resource and is never used by default. A family
-#'   name loads its default face; pass a full URL plus the matching
-#'   `font_family` when specific axes or weights are required.
+#' @param google_font A Google Fonts family name or a full Google Fonts CSS v2
+#'   URL. This is an explicit online resource and is never used by default.
+#'   A family name loads the available weights and styles needed for regular,
+#'   bold, italic, and bold italic text, preferring a variable weight range.
+#'   Supply a full URL to select other weights, axes, or options.
 #' @param font_files A named character vector or list of local font files. Names
 #'   may be `regular`, `italic`, `bold`, and `bold_italic`. Relative paths are
 #'   resolved from the source document. Fonts are embedded in the HTML.
@@ -534,23 +535,182 @@ google_font <- function(x) {
     return(list(url = NULL, family = NULL))
   }
   x <- scalar_character(x, "google_font")
-  if (grepl("^https://fonts[.]googleapis[.]com/", x)) {
-    return(list(url = x, family = NULL))
+  if (grepl("^https://fonts[.]googleapis[.]com/css2[?]", x)) {
+    return(list(url = x, family = google_font_url_family(x)))
   }
   if (grepl("^https?://", x)) {
     stop(
-      "`google_font` URLs must use fonts.googleapis.com.",
+      "`google_font` URLs must use the Google Fonts CSS v2 API.",
       call. = FALSE
     )
   }
-  family <- x
-  query <- gsub("%20", "+", utils::URLencode(family, reserved = TRUE))
+
+  catalog <- google_font_catalog()
+  index <- match(tolower(trimws(x)), tolower(catalog$family))
+  if (is.na(index)) {
+    stop(
+      "Google font family `", x, "` is not in the bundled catalog. ",
+      "Supply a full Google Fonts CSS v2 URL for a newer family.",
+      call. = FALSE
+    )
+  }
+  font <- catalog[index, , drop = FALSE]
+  family <- font$family[[1L]]
+  spec <- if (is.na(font$variable_weight_min[[1L]])) {
+    google_static_font_spec(font)
+  } else {
+    google_variable_font_spec(font)
+  }
+  query <- gsub(
+    "%20", "+", utils::URLencode(family, reserved = TRUE),
+    fixed = TRUE
+  )
   list(
     url = paste0(
-      "https://fonts.googleapis.com/css2?family=", query, "&display=swap"
+      "https://fonts.googleapis.com/css2?family=", query, spec,
+      "&display=swap"
     ),
     family = family
   )
+}
+
+#' Load and cache the bundled Google Fonts catalog
+#'
+#' A private closure avoids reparsing the immutable TSV on every render.
+#' @noRd
+google_font_catalog <- local({
+  catalog <- NULL
+  function() {
+    if (!is.null(catalog)) {
+      return(catalog)
+    }
+    path <- liteformats_file("data", "google-fonts.tsv")
+    catalog <<- utils::read.delim(
+      path,
+      sep = "\t",
+      quote = '"',
+      na.strings = "",
+      colClasses = c(
+        "character", "character", "character", "numeric", "numeric",
+        "character", "numeric", "numeric"
+      ),
+      stringsAsFactors = FALSE,
+      check.names = FALSE,
+      fileEncoding = "UTF-8"
+    )
+    catalog
+  }
+})
+
+google_static_font_spec <- function(font) {
+  normal <- essential_font_weights(font$normal_weights[[1L]])
+  italic <- essential_font_weights(font$italic_weights[[1L]])
+  styles <- c(rep.int(0, length(normal)), rep.int(1, length(italic)))
+  weights <- c(normal, italic)
+  google_font_face_spec(styles, weights)
+}
+
+google_variable_font_spec <- function(font) {
+  weight_min <- font$variable_weight_min[[1L]]
+  weight_max <- font$variable_weight_max[[1L]]
+  weights <- unique(pmax(weight_min, pmin(weight_max, c(400, 700))))
+  weight <- if (length(weights) == 1L) {
+    font_number(weights)
+  } else {
+    paste0(font_number(min(weights)), "..", font_number(max(weights)))
+  }
+  use_weight <- length(weights) > 1L || weights[[1L]] != 400
+
+  slant_min <- font$slant_min[[1L]]
+  slant_max <- font$slant_max[[1L]]
+  if (!is.na(slant_min) && !is.na(slant_max) && slant_min != slant_max) {
+    axes <- c("slnt", if (use_weight) "wght")
+    values <- c(
+      paste0(font_number(slant_min), "..", font_number(slant_max)),
+      if (use_weight) weight
+    )
+    return(paste0(":", paste(axes, collapse = ","), "@",
+      paste(values, collapse = ",")))
+  }
+
+  styles <- catalog_values(font$variable_styles[[1L]])
+  styles <- c(if ("normal" %in% styles) 0, if ("italic" %in% styles) 1)
+  if (!length(styles)) {
+    styles <- 0
+  }
+  if (!use_weight) {
+    return(google_font_face_spec(styles, rep.int(400, length(styles))))
+  }
+  if (identical(styles, 0)) {
+    return(paste0(":wght@", weight))
+  }
+  tuples <- paste(styles, weight, sep = ",")
+  paste0(":ital,wght@", paste(tuples, collapse = ";"))
+}
+
+google_font_face_spec <- function(styles, weights) {
+  order <- order(styles, weights)
+  styles <- styles[order]
+  weights <- weights[order]
+  use_italic <- any(styles == 1)
+  use_weight <- any(weights != 400)
+  if (!use_italic && !use_weight) {
+    return("")
+  }
+  axes <- c(if (use_italic) "ital", if (use_weight) "wght")
+  tuples <- vapply(seq_along(styles), function(index) {
+    values <- c(
+      if (use_italic) styles[[index]],
+      if (use_weight) weights[[index]]
+    )
+    paste(values, collapse = ",")
+  }, character(1))
+  paste0(":", paste(axes, collapse = ","), "@",
+    paste(tuples, collapse = ";"))
+}
+
+essential_font_weights <- function(x) {
+  weights <- as.numeric(catalog_values(x))
+  if (!length(weights)) {
+    return(numeric())
+  }
+  unique(vapply(c(400, 700), function(target) {
+    distance <- abs(weights - target)
+    nearest <- weights[distance == min(distance)]
+    if (target <= 500) max(nearest) else min(nearest)
+  }, numeric(1)))
+}
+
+catalog_values <- function(x) {
+  if (length(x) != 1L || is.na(x) || !nzchar(x)) {
+    return(character())
+  }
+  strsplit(x, ",", fixed = TRUE)[[1L]]
+}
+
+font_number <- function(x) {
+  format(x, digits = 15L, trim = TRUE, scientific = FALSE)
+}
+
+google_font_url_family <- function(url) {
+  match <- regexpr("[?&]family=[^&]+", url)
+  if (match[[1L]] < 0L) {
+    stop(
+      "A Google Fonts CSS v2 URL must contain a `family` parameter.",
+      call. = FALSE
+    )
+  }
+  value <- regmatches(url, match)
+  value <- sub("^[?&]family=", "", value)
+  value <- utils::URLdecode(gsub("+", " ", value, fixed = TRUE))
+  family <- sub(":.*$", "", value)
+  if (!nzchar(family)) {
+    stop(
+      "A Google Fonts CSS v2 URL must name a font family.",
+      call. = FALSE
+    )
+  }
+  family
 }
 
 css_font_name <- function(x) {
