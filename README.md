@@ -109,9 +109,28 @@ resume(
 )
 ```
 
-Set `google_font = "Source Serif 4"` to opt into a Google Fonts request at
-render time. Package installation, checks, examples, and vignettes never need
-network access.
+Set `google_font = "Source Serif 4"` to opt into Google Fonts at render time.
+liteformats uses a bundled font catalog to request the available weights and
+styles needed for regular, bold, italic, and bold-italic text. For a variable
+font, it requests the smallest weight range covering regular and bold;
+unsupported combinations are omitted instead of making the whole Google Fonts
+request fail. A full CSS v2 URL is accepted when you need different weights or
+axes:
+
+``` r
+resume(
+  "resume.Rmd",
+  google_font = paste0(
+    "https://fonts.googleapis.com/css2?",
+    "family=Inter:ital,opsz,wght@0,14..32,100..900;",
+    "1,14..32,100..900&display=swap"
+  )
+)
+```
+
+The full-URL form also supports families newer than the bundled catalog.
+Google Fonts remains deliberately opt-in. Package installation, checks,
+examples, and vignettes never need network access.
 
 Ligatures are disabled by default, but PDF text extraction can also depend on
 the selected font's internal tables. When ATS parsing matters, inspect the
