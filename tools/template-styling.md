@@ -28,8 +28,39 @@ There are three additional sources of variability:
 
 The same list also appears in different semantic contexts: directly under
 `.resume-body`, inside `.resume-entry`, and nested inside another list.
-Selectors must cover these contexts without affecting metadata lists such as
-contact information.
+During pagination, pages.js moves direct content into `.pagesjs-body` and
+removes the empty `.resume-body`; flattened entry lists also lose their
+`.resume-entry` ancestor. Scope shared content-list geometry to the persistent
+`.liteformats-resume` document class so it survives both transformations.
+Avoid selectors that would affect metadata such as contact information.
+
+## How resume pagination works
+
+pages.js fills a page from the direct element children of `.body`. Paragraphs
+can split by rendered line, and top-level `ul`, `ol`, `table`, and `blockquote`
+elements can fragment. A multi-child `div` is not one of its breakable
+containers: if the whole element overflows, pages.js moves it to the next page.
+CSS declarations such as `break-after: avoid` do not change this JavaScript
+placement decision.
+
+CommonMark renders each `::: resume-entry` as a multi-child `div`, normally
+containing two metadata paragraphs followed by a list. The resume script
+therefore listens for `pagesjs:before` and replaces each direct entry wrapper
+with its children just before pagination. Marker classes on the first, second,
+and last children preserve the entry header and bottom-spacing styles. The
+unpaged document retains the original semantic wrapper.
+
+Do not wrap a heading and its complete list merely to keep them together.
+That makes the entire section atomic and can move many lines that would
+otherwise fit. Let the heading and list remain direct body children, and let
+pages.js fragment lists at list-item boundaries. Some unused space can still
+occur when the next individual list item does not fit; nested lists are part of
+their parent item. This bounded underfill is preferable to moving an entire
+job or section.
+
+When the last child of an entry is a fragmented list, pages.js shallow-clones
+its wrapper and classes. Apply entry-ending space only to the final fragment;
+otherwise the cloned margin consumes usable space at every page boundary.
 
 ## Reliable workflow
 
@@ -42,7 +73,9 @@ contact information.
 4. Render with pagination enabled and force a list across a page boundary.
    Confirm that indentation, spacing, markers, and ordered numbering survive
    pages.js fragmentation.
-5. Inspect the PDF as well as browser HTML. Repeat with the supported paper
+5. Include a long `resume-entry` that must cross a page boundary. Confirm that
+   earlier pages fill through the entry instead of moving the whole job.
+6. Inspect the PDF as well as browser HTML. Repeat with the supported paper
    sizes and at least one font with noticeably different metrics.
 
 Prefer element/class selectors that remain true after pages.js moves or clones
