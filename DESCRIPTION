@@ -1,11 +1,13 @@
 Package: liteformats
 Title: Lightweight Output Formats for 'litedown'
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Authors@R: c(
     person("Nan", "Xiao", email = "me@nanx.me", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0250-5673")),
     person("Yihui", "Xie", role = c("ctb", "cph"),
-           comment = "pages.js and pages.css libraries")
+           comment = "pages.js and pages.css libraries"),
+    person("Ayuhito", role = c("ctb", "cph"),
+           comment = "google-font-metadata catalog")
     )
 Description: A collection of lightweight, minimalist output formats and
     templates for 'litedown' by Xie (2026) <doi:10.32614/CRAN.package.litedown>,
