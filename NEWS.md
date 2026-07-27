@@ -1,3 +1,13 @@
+# liteformats (development version)
+
+## Bug fixes
+
+- Fixed overly aggressive resume pagination that treated complete experiences
+  and list-based sections as indivisible, leaving large gaps at page bottoms.
+  Resume entries now fill the available page and continue across pages at
+  normal paragraph and list boundaries while retaining compact list
+  indentation (#8).
+
 # liteformats 0.1.0
 
 ## New features
