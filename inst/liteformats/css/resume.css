@@ -63,35 +63,27 @@
   margin: 0 0 var(--lf-paragraph-spacing);
 }
 
-.resume-body ul,
-.resume-body ol,
-.resume-entry ul,
-.resume-entry ol {
+.liteformats-resume ul,
+.liteformats-resume ol {
   margin: 0.25em 0 0.5em;
   padding-left: 1.15em;
 }
 
-.resume-body ul,
-.resume-entry ul {
+.liteformats-resume ul {
   list-style-type: disc;
 }
 
-.resume-body ul ul,
-.resume-entry ul ul {
+.liteformats-resume ul ul {
   list-style-type: circle;
 }
 
-.resume-body li,
-.resume-entry li,
-.resume-entry ol li {
+.liteformats-resume li {
   margin: 0.08em 0;
   padding-left: 0.08em;
 }
 
-.resume-body li>ul,
-.resume-body li>ol,
-.resume-entry li>ul,
-.resume-entry li>ol {
+.liteformats-resume li>ul,
+.liteformats-resume li>ol {
   margin-top: 0.08em;
   margin-bottom: 0.15em;
 }
@@ -100,7 +92,8 @@
   margin: 0 0 0.55em;
 }
 
-.resume-entry>p:first-child {
+.resume-entry>p:first-child,
+.resume-entry-primary {
   display: flex;
   gap: 1em;
   align-items: baseline;
@@ -109,12 +102,21 @@
   break-after: avoid;
 }
 
-.resume-entry>p:nth-child(2) {
+.resume-entry>p:nth-child(2),
+.resume-entry-secondary {
   display: flex;
   gap: 1em;
   align-items: baseline;
   justify-content: space-between;
   break-after: avoid;
+}
+
+.resume-entry-last {
+  margin-bottom: 0.55em;
+}
+
+.resume-entry-last.pagesjs-fragmented:not(.fragment-last) {
+  margin-bottom: 0;
 }
 
 .resume-meta {

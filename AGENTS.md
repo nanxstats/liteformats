@@ -36,6 +36,10 @@
 - Read `tools/template-styling.md` before changing resume list CSS. Test the
   actual CommonMark HTML in unpaged HTML, pages.js output, and PDF because list
   structure, browser defaults, and pagination all affect spacing and markers.
+- Preserve the resume's `pagesjs:before` entry flattening. pages.js treats a
+  multi-child `<div>` as indivisible and does not use CSS `break-*` rules for
+  its element-placement decisions, so keep-together wrappers around entries or
+  heading/list sections can leave large page gaps.
 - Do not redistribute any local fonts: no redistributable license was found.
   They may be used locally for visual comparison only.
 
