@@ -92,38 +92,48 @@ liteformats:
   link-color: "#385898"
 ```
 
-They can also be supplied as renderer arguments. Local `.otf`, `.ttf`,
-`.woff`, and `.woff2` files are embedded in the output:
+This flat, kebab-case `liteformats` mapping is the canonical YAML
+configuration. Document metadata such as `author`, `job-title`, `address`, and
+`greeting` remains at the top level of the header, as shown in each starter.
+
+For builds that need to set or override YAML, pass a classed configuration from
+the matching options helper. Local `.otf`, `.ttf`, `.woff`, and `.woff2` files
+are embedded in the output:
 
 ``` r
 resume(
   "resume.Rmd",
   "resume.pdf",
-  font_files = c(
-    regular = "fonts/MySerif-Regular.woff2",
-    italic = "fonts/MySerif-Italic.woff2",
-    bold = "fonts/MySerif-Bold.woff2"
-  ),
-  font_scale = 0.96,
-  ligatures = FALSE
+  options = resume_options(
+    font_files = c(
+      regular = "fonts/MySerif-Regular.woff2",
+      italic = "fonts/MySerif-Italic.woff2",
+      bold = "fonts/MySerif-Bold.woff2"
+    ),
+    font_scale = 0.96,
+    ligatures = FALSE
+  )
 )
 ```
 
-Set `google_font = "Source Serif 4"` to opt into Google Fonts at render time.
-liteformats uses a bundled font catalog to request the available weights and
-styles needed for regular, bold, italic, and bold-italic text. For a variable
-font, it requests the smallest weight range covering regular and bold;
-unsupported combinations are omitted instead of making the whole Google Fonts
-request fail. A full CSS v2 URL is accepted when you need different weights or
-axes:
+Set `google_font = "Source Serif 4"` in `resume_options()` (or set
+`google-font: "Source Serif 4"` in YAML) to opt into Google Fonts at render
+time. liteformats uses a bundled font catalog to request the available weights
+and styles needed for regular, bold, italic, and bold-italic text. For a
+variable font, it requests the smallest weight range covering regular and
+bold; unsupported combinations are omitted instead of making the whole Google
+Fonts request fail. A full CSS v2 URL is accepted when you need different
+weights or axes:
 
 ``` r
 resume(
   "resume.Rmd",
-  google_font = paste0(
-    "https://fonts.googleapis.com/css2?",
-    "family=Inter:ital,opsz,wght@0,14..32,100..900;",
-    "1,14..32,100..900&display=swap"
+  options = resume_options(
+    google_font = paste0(
+      "https://fonts.googleapis.com/css2?",
+      "family=Inter:ital,opsz,wght@0,14..32,100..900;",
+      "1,14..32,100..900&display=swap"
+    )
   )
 )
 ```

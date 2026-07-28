@@ -77,7 +77,12 @@ liteformats:
   link-color: "#385898"
 ```
 
-Renderer arguments override YAML. A local font family can provide regular,
+This flat, kebab-case `liteformats` mapping is the canonical YAML
+configuration. Metadata such as `author`, `job-title`, `address`, `date`, and
+`greeting` remains at the top level of the header.
+
+For function-call configuration, use the options helper matching the renderer.
+Its non-`NULL` values override YAML. A local font family can provide regular,
 italic, bold, and bold-italic files. These files are embedded into the output,
 which keeps HTML portable and lets PDF rendering work offline.
 
@@ -85,22 +90,26 @@ which keeps HTML portable and lets PDF rendering work offline.
 #| eval = FALSE
 liteformats::resume(
   "resume.Rmd",
-  font_files = c(
-    regular = "fonts/MySerif-Regular.otf",
-    italic = "fonts/MySerif-Italic.otf",
-    bold = "fonts/MySerif-Bold.otf"
-  ),
-  font_scale = 0.9,
-  ligatures = FALSE
+  options = liteformats::resume_options(
+    font_files = c(
+      regular = "fonts/MySerif-Regular.otf",
+      italic = "fonts/MySerif-Italic.otf",
+      bold = "fonts/MySerif-Bold.otf"
+    ),
+    font_scale = 0.9,
+    ligatures = FALSE
+  )
 )
 ```
 
-Alternatively, `google_font = "Source Serif 4"` adds a Google Fonts stylesheet.
-liteformats consults its bundled catalog and requests the available weights and
-styles needed for regular, bold, italic, and bold-italic text. It uses a
+Alternatively, `google_font = "Source Serif 4"` in the helper (or
+`google-font: "Source Serif 4"` in YAML) adds a Google Fonts stylesheet.
+liteformats consults its bundled catalog and requests the available weights
+and styles needed for regular, bold, italic, and bold-italic text. It uses a
 variable weight range when the family provides one and omits unsupported
-combinations, so the CSS API request remains valid. This option is deliberately
-opt-in because it requires internet access when the document is rendered.
+combinations, so the CSS API request remains valid. This option is
+deliberately opt-in because it requires internet access when the document is
+rendered.
 
 A full Google Fonts CSS v2 URL overrides the catalog-derived request and can
 select explicit weights or variable axes:
@@ -109,10 +118,12 @@ select explicit weights or variable axes:
 #| eval = FALSE
 liteformats::resume(
   "resume.Rmd",
-  google_font = paste0(
-    "https://fonts.googleapis.com/css2?",
-    "family=Inter:ital,opsz,wght@0,14..32,100..900;",
-    "1,14..32,100..900&display=swap"
+  options = liteformats::resume_options(
+    google_font = paste0(
+      "https://fonts.googleapis.com/css2?",
+      "family=Inter:ital,opsz,wght@0,14..32,100..900;",
+      "1,14..32,100..900&display=swap"
+    )
   )
 )
 ```
