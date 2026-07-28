@@ -5,44 +5,13 @@
 #' inferred from the extension of `output`.
 #'
 #' Document metadata and typographic settings may be supplied in the YAML
-#' header. Renderer arguments take precedence over YAML. See
-#' `use_resume()` for a complete starter document.
+#' header. Values in `options` take precedence over YAML. See [resume_options()]
+#' for function-call configuration and [use_resume()] for a complete starter.
 #'
 #' @param input Path to a `.Rmd` or `.md` source document.
 #' @param output Output path ending in `.html` or `.pdf`. If `NULL`, an HTML
 #'   file is created beside `input`.
-#' @param author,address,phone,email,website Contact metadata. `NULL` uses the
-#'   corresponding value in the source document's YAML header.
-#' @param job_title,linkedin Resume-specific professional and contact metadata.
-#' @param font_family A CSS `font-family` value. For example,
-#'   `"Charter, Georgia, serif"`.
-#' @param google_font A Google Fonts family name or a full Google Fonts CSS v2
-#'   URL. This is an explicit online resource and is never used by default.
-#'   A family name loads the available weights and styles needed for regular,
-#'   bold, italic, and bold italic text, preferring a variable weight range.
-#'   Supply a full URL to select other weights, axes, or options.
-#' @param font_files A named character vector or list of local font files. Names
-#'   may be `regular`, `italic`, `bold`, and `bold_italic`. Relative paths are
-#'   resolved from the source document. Fonts are embedded in the HTML.
-#' @param font_size A CSS length such as `"11pt"`.
-#' @param font_scale A positive number used to scale `font_size`. This is useful
-#'   when replacing a font with different metrics.
-#' @param ligatures Whether to enable common and discretionary ligatures.
-#'   Defaults to `FALSE` for more predictable text extraction from PDFs.
-#' @param line_height A positive unitless CSS line height or CSS length.
-#' @param paragraph_spacing,section_spacing CSS lengths controlling vertical
-#'   rhythm.
-#' @param margins Page margins. Supply one to four CSS lengths using standard
-#'   CSS shorthand order, or numeric values interpreted as inches.
-#' @param paper A paper name (`"letter"`, `"a4"`, or `"legal"`) or a
-#'   two-element vector containing width and height as CSS lengths.
-#' @param link_color Any valid CSS color.
-#' @param paged Whether the HTML preview should open in a paginated layout.
-#'   Printing always invokes the packaged pages.js pagination.
-#' @param keep_html For PDF output, whether to retain the intermediate HTML
-#'   beside the PDF.
-#' @param browser Path to Chromium, Google Chrome, or Microsoft Edge. `NULL`
-#'   lets [xfun::browser_print()] discover it.
+#' @param options A resume configuration created by [resume_options()].
 #' @param envir Environment in which R code in `input` is evaluated.
 #' @return The normalized output path, invisibly.
 #' @export
@@ -57,72 +26,28 @@
 #' # Embed local font files
 #' resume(
 #'   source,
-#'   font_files = c(
-#'     regular = "fonts/MySerif-Regular.woff2",
-#'     italic = "fonts/MySerif-Italic.woff2",
-#'     bold = "fonts/MySerif-Bold.woff2"
-#'   ),
-#'   font_scale = 0.96,
-#'   ligatures = FALSE
+#'   options = resume_options(
+#'     font_files = c(
+#'       regular = "fonts/MySerif-Regular.woff2",
+#'       italic = "fonts/MySerif-Italic.woff2",
+#'       bold = "fonts/MySerif-Bold.woff2"
+#'     ),
+#'     font_scale = 0.96,
+#'     ligatures = FALSE
+#'   )
 #' )
 #' }
 resume <- function(
   input,
   output = NULL,
-  author = NULL,
-  job_title = NULL,
-  address = NULL,
-  phone = NULL,
-  email = NULL,
-  website = NULL,
-  linkedin = NULL,
-  font_family = NULL,
-  google_font = NULL,
-  font_files = NULL,
-  font_size = NULL,
-  font_scale = NULL,
-  ligatures = NULL,
-  line_height = NULL,
-  paragraph_spacing = NULL,
-  section_spacing = NULL,
-  margins = NULL,
-  paper = NULL,
-  link_color = NULL,
-  paged = NULL,
-  keep_html = FALSE,
-  browser = NULL,
+  options = resume_options(),
   envir = parent.frame()
 ) {
   render_liteformat(
     type = "resume",
     input = input,
     output = output,
-    metadata = list(
-      author = author,
-      job_title = job_title,
-      address = address,
-      phone = phone,
-      email = email,
-      website = website,
-      linkedin = linkedin
-    ),
-    typography = list(
-      font_family = font_family,
-      google_font = google_font,
-      font_files = font_files,
-      font_size = font_size,
-      font_scale = font_scale,
-      ligatures = ligatures,
-      line_height = line_height,
-      paragraph_spacing = paragraph_spacing,
-      section_spacing = section_spacing,
-      margins = margins,
-      paper = paper,
-      link_color = link_color,
-      paged = paged
-    ),
-    keep_html = keep_html,
-    browser = browser,
+    options = options,
     envir = envir
   )
 }
@@ -134,7 +59,8 @@ resume <- function(
 #' foreground in the wider right column.
 #'
 #' @inheritParams resume
-#' @param date,greeting Letter date and salutation. `NULL` uses YAML metadata.
+#' @param options A cover letter configuration created by
+#'   [cover_letter_options()].
 #' @return The normalized output path, invisibly.
 #' @export
 #' @examples
@@ -148,75 +74,25 @@ resume <- function(
 cover_letter <- function(
   input,
   output = NULL,
-  author = NULL,
-  address = NULL,
-  phone = NULL,
-  email = NULL,
-  website = NULL,
-  date = NULL,
-  greeting = NULL,
-  font_family = NULL,
-  google_font = NULL,
-  font_files = NULL,
-  font_size = NULL,
-  font_scale = NULL,
-  ligatures = NULL,
-  line_height = NULL,
-  paragraph_spacing = NULL,
-  section_spacing = NULL,
-  margins = NULL,
-  paper = NULL,
-  link_color = NULL,
-  paged = NULL,
-  keep_html = FALSE,
-  browser = NULL,
+  options = cover_letter_options(),
   envir = parent.frame()
 ) {
   render_liteformat(
     type = "cover-letter",
     input = input,
     output = output,
-    metadata = list(
-      author = author,
-      address = address,
-      phone = phone,
-      email = email,
-      website = website,
-      date = date,
-      greeting = greeting
-    ),
-    typography = list(
-      font_family = font_family,
-      google_font = google_font,
-      font_files = font_files,
-      font_size = font_size,
-      font_scale = font_scale,
-      ligatures = ligatures,
-      line_height = line_height,
-      paragraph_spacing = paragraph_spacing,
-      section_spacing = section_spacing,
-      margins = margins,
-      paper = paper,
-      link_color = link_color,
-      paged = paged
-    ),
-    keep_html = keep_html,
-    browser = browser,
+    options = options,
     envir = envir
   )
 }
 
-render_liteformat <- function(
-  type, input, output, metadata, typography, keep_html, browser, envir
-) {
+render_liteformat <- function(type, input, output, options, envir) {
+  options <- check_liteformat_options(options, type)
   input <- check_input(input)
   output <- document_output(input, output)
   format <- tolower(tools::file_ext(output))
   if (!format %in% c("html", "pdf")) {
     stop("`output` must end in '.html' or '.pdf'.", call. = FALSE)
-  }
-  if (!is.logical(keep_html) || length(keep_html) != 1L || is.na(keep_html)) {
-    stop("`keep_html` must be TRUE or FALSE.", call. = FALSE)
   }
 
   output_dir <- dirname(output)
@@ -235,26 +111,25 @@ render_liteformat <- function(
   )
   markdown <- as.character(markdown)
   yaml <- read_document_yaml(markdown)
-  config <- yaml[["liteformats"]]
-  if (!is.list(config)) config <- list()
+  config <- document_config(yaml, type)
 
-  settings <- document_settings(type, typography, config, input)
-  metadata <- document_metadata(type, metadata, yaml)
+  settings <- document_settings(type, options$settings, config, input)
+  metadata <- document_metadata(type, options$metadata, yaml)
   meta <- document_html_meta(type, metadata, settings)
 
   html_output <- if (format == "html") {
     output
-  } else if (isTRUE(keep_html)) {
+  } else if (isTRUE(options$keep_html)) {
     replace_extension(output, "html")
   } else {
     tempfile("liteformats-", fileext = ".html")
   }
-  if (format == "pdf" && !isTRUE(keep_html)) {
+  if (format == "pdf" && !isTRUE(options$keep_html)) {
     on.exit(unlink(html_output), add = TRUE)
   }
 
   template <- liteformats_file("templates", paste0(type, ".html"))
-  old_options <- options(
+  old_options <- base::options(
     litedown.html.template = template,
     litedown.html.options = list(
       embed_resources = "local",
@@ -263,7 +138,7 @@ render_liteformat <- function(
       smart = TRUE
     )
   )
-  on.exit(options(old_options), add = TRUE)
+  on.exit(base::options(old_options), add = TRUE)
 
   litedown::mark(
     input = input,
@@ -277,7 +152,7 @@ render_liteformat <- function(
       input = normalizePath(html_output, mustWork = TRUE),
       output = output,
       args = c("default", "--no-pdf-header-footer"),
-      browser = browser
+      browser = options$browser
     )
   }
 
@@ -319,6 +194,32 @@ read_document_yaml <- function(text) {
   if (is.list(parsed[["yaml"]])) parsed[["yaml"]] else list()
 }
 
+document_config <- function(yaml, type) {
+  config <- yaml[["liteformats"]]
+  if (is.null(config)) {
+    return(list())
+  }
+  if (!is.list(config)) {
+    stop("`liteformats` in YAML must be a mapping.", call. = FALSE)
+  }
+  if (length(config) && (is.null(names(config)) || any(!nzchar(names(config))))) {
+    stop("Every `liteformats` YAML option must be named.", call. = FALSE)
+  }
+  allowed <- gsub("_", "-", names(document_defaults(type)), fixed = TRUE)
+  unknown <- setdiff(names(config), allowed)
+  if (length(unknown)) {
+    stop(
+      "Unknown `liteformats` YAML option",
+      if (length(unknown) > 1L) "s" else "",
+      ": ",
+      paste0("`", unknown, "`", collapse = ", "),
+      ".",
+      call. = FALSE
+    )
+  }
+  config
+}
+
 document_defaults <- function(type) {
   common <- list(
     font_family = 'Georgia, "Times New Roman", serif',
@@ -332,47 +233,28 @@ document_defaults <- function(type) {
     link_color = "#385898",
     paged = TRUE
   )
-  if (type == "resume") {
-    c(
-      common,
-      list(
-        paragraph_spacing = "0.05em",
-        section_spacing = "1em",
-        margins = c("0.65in", "0.8in")
-      )
-    )
-  } else {
-    c(
-      common,
-      list(
-        paragraph_spacing = "1em",
-        section_spacing = "1em",
-        margins = "1in"
-      )
-    )
-  }
+  specific <- switch(type,
+    resume = list(
+      paragraph_spacing = "0.05em",
+      section_spacing = "1em",
+      margins = c("0.65in", "0.8in")
+    ),
+    `cover-letter` = list(
+      paragraph_spacing = "1em",
+      section_spacing = "1em",
+      margins = "1in"
+    ),
+    stop("Unknown liteformat type: ", type, call. = FALSE)
+  )
+  c(common, specific)
 }
 
 document_settings <- function(type, args, config, input) {
   defaults <- document_defaults(type)
-  nested_font <- config[["font"]]
-  if (!is.list(nested_font)) nested_font <- list()
-
-  cfg <- list(
-    font_family = config_value(config, "font-family", nested_font[["family"]]),
-    google_font = config_value(config, "google-font", nested_font[["google"]]),
-    font_files = config_value(config, "font-files", nested_font[["files"]]),
-    font_size = config_value(config, "font-size", nested_font[["size"]]),
-    font_scale = config_value(config, "font-scale", nested_font[["scale"]]),
-    ligatures = config_value(config, "ligatures", nested_font[["ligatures"]]),
-    line_height = config_value(config, "line-height"),
-    paragraph_spacing = config_value(config, "paragraph-spacing"),
-    section_spacing = config_value(config, "section-spacing"),
-    margins = config_value(config, "margins"),
-    paper = config_value(config, "paper"),
-    link_color = config_value(config, "link-color"),
-    paged = config_value(config, "paged")
-  )
+  cfg <- lapply(names(defaults), function(name) {
+    config[[gsub("_", "-", name, fixed = TRUE)]]
+  })
+  names(cfg) <- names(defaults)
   settings <- lapply(names(defaults), function(name) {
     first_value(args[[name]], cfg[[name]], defaults[[name]])
   })
@@ -417,12 +299,6 @@ document_settings <- function(type, args, config, input) {
     )
   }
   settings
-}
-
-config_value <- function(config, key, fallback = NULL) {
-  value <- config[[key]]
-  if (is.null(value)) value <- config[[gsub("-", "_", key, fixed = TRUE)]]
-  if (is.null(value)) fallback else value
 }
 
 first_value <- function(x, y, z) {
@@ -629,8 +505,10 @@ google_variable_font_spec <- function(font) {
       paste0(font_number(slant_min), "..", font_number(slant_max)),
       if (use_weight) weight
     )
-    return(paste0(":", paste(axes, collapse = ","), "@",
-      paste(values, collapse = ",")))
+    return(paste0(
+      ":", paste(axes, collapse = ","), "@",
+      paste(values, collapse = ",")
+    ))
   }
 
   styles <- catalog_values(font$variable_styles[[1L]])
@@ -665,8 +543,10 @@ google_font_face_spec <- function(styles, weights) {
     )
     paste(values, collapse = ",")
   }, character(1))
-  paste0(":", paste(axes, collapse = ","), "@",
-    paste(tuples, collapse = ";"))
+  paste0(
+    ":", paste(axes, collapse = ","), "@",
+    paste(tuples, collapse = ";")
+  )
 }
 
 essential_font_weights <- function(x) {
@@ -779,25 +659,11 @@ is_absolute_path <- function(path) {
 }
 
 document_metadata <- function(type, args, yaml) {
-  aliases <- list(
-    author = "author",
-    job_title = c("job-title", "job_title", "jobtitle"),
-    address = "address",
-    phone = "phone",
-    email = "email",
-    website = c("website", "web", "url"),
-    linkedin = "linkedin",
-    date = "date",
-    greeting = c("greeting", "greetings")
-  )
   for (name in names(args)) {
     if (!is.null(args[[name]])) next
-    for (alias in aliases[[name]]) {
-      value <- yaml[[alias]]
-      if (!is.null(value)) {
-        args[[name]] <- value
-        break
-      }
+    value <- yaml[[gsub("_", "-", name, fixed = TRUE)]]
+    if (!is.null(value)) {
+      args[[name]] <- value
     }
   }
   if (is.null(args$author)) {

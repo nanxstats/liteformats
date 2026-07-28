@@ -3,7 +3,7 @@ assert("resume starter renders to offline, self-contained HTML", {
   dir.create(directory)
   on.exit(unlink(directory, recursive = TRUE), add = TRUE)
   input <- use_resume(file.path(directory, "resume.Rmd"))
-  output <- resume(input, paged = FALSE)
+  output <- resume(input, options = resume_options(paged = FALSE))
   html <- paste(readLines(output, warn = FALSE), collapse = "\n")
 
   (file.exists(output))
@@ -24,7 +24,10 @@ assert("cover-letter starter renders its semantic columns", {
   dir.create(directory)
   on.exit(unlink(directory, recursive = TRUE), add = TRUE)
   input <- use_cover_letter(file.path(directory, "letter.Rmd"))
-  output <- cover_letter(input, paged = FALSE)
+  output <- cover_letter(
+    input,
+    options = cover_letter_options(paged = FALSE)
+  )
   html <- paste(readLines(output, warn = FALSE), collapse = "\n")
 
   (file.exists(output))
@@ -90,7 +93,13 @@ assert("Google Fonts are applied to rendered documents", {
   dir.create(directory)
   on.exit(unlink(directory, recursive = TRUE), add = TRUE)
   input <- use_cover_letter(file.path(directory, "letter.Rmd"))
-  output <- cover_letter(input, google_font = "Lato", paged = FALSE)
+  output <- cover_letter(
+    input,
+    options = cover_letter_options(
+      google_font = "Lato",
+      paged = FALSE
+    )
+  )
   html <- paste(readLines(output, warn = FALSE), collapse = "\n")
 
   (grepl(
@@ -102,6 +111,85 @@ assert("Google Fonts are applied to rendered documents", {
     fixed = TRUE
   ))
   (grepl('--lf-font-family:"Lato", Georgia,', html, fixed = TRUE))
+})
+
+assert("renderers expose only primary arguments", {
+  (identical(
+    names(formals(resume)),
+    c("input", "output", "options", "envir")
+  ))
+  (identical(
+    names(formals(cover_letter)),
+    c("input", "output", "options", "envir")
+  ))
+})
+
+assert("format-specific helpers create checked option objects", {
+  resume_config <- resume_options(font_size = "10pt")
+  letter_config <- cover_letter_options(greeting = "Hello:")
+  typo <- try(resume_options(font_szie = "10pt"), silent = TRUE)
+  crossed <- try(
+    resume("missing.Rmd", options = letter_config),
+    silent = TRUE
+  )
+
+  (inherits(resume_config, "liteformats_resume_options"))
+  (inherits(resume_config, "liteformats_options"))
+  (inherits(letter_config, "liteformats_cover_letter_options"))
+  (inherits(typo, "try-error"))
+  (grepl("unused argument", as.character(typo), fixed = TRUE))
+  (inherits(crossed, "try-error"))
+  (grepl(
+    "`options` must be created by `resume_options()`.",
+    as.character(crossed),
+    fixed = TRUE
+  ))
+})
+
+assert("function options override canonical YAML settings and metadata", {
+  directory <- tempfile("liteformats-options-")
+  dir.create(directory)
+  on.exit(unlink(directory, recursive = TRUE), add = TRUE)
+  input <- use_resume(file.path(directory, "resume.Rmd"))
+  output <- resume(
+    input,
+    options = resume_options(
+      author = "Function Author",
+      font_size = "12pt",
+      font_scale = 1,
+      paged = FALSE
+    )
+  )
+  html <- paste(readLines(output, warn = FALSE), collapse = "\n")
+
+  (grepl(
+    '<div class="resume-name">Function Author</div>',
+    html,
+    fixed = TRUE
+  ))
+  (grepl("--lf-font-size:12pt;", html, fixed = TRUE))
+  (!grepl(
+    "window.dispatchEvent(new KeyboardEvent",
+    html,
+    fixed = TRUE
+  ))
+})
+
+assert("unknown YAML configuration names fail clearly", {
+  error <- try(
+    document_config(
+      list(liteformats = list(`font-szie` = "10pt")),
+      "resume"
+    ),
+    silent = TRUE
+  )
+
+  (inherits(error, "try-error"))
+  (grepl(
+    "Unknown `liteformats` YAML option: `font-szie`.",
+    as.character(error),
+    fixed = TRUE
+  ))
 })
 
 assert("starter creation protects existing files", {
