@@ -27,8 +27,10 @@
 <ul class="numbered">
 <li><a href="#sec:man-liteformats-package"><span class="section-number main-number">1</span> Lightweight output formats for litedown</a></li>
 <li><a href="#sec:man-cover_letter"><span class="section-number main-number">2</span> Render a cover letter</a></li>
-<li><a href="#sec:man-resume"><span class="section-number main-number">3</span> Render a resume</a></li>
-<li><a href="#sec:man-use_resume"><span class="section-number main-number">4</span> Create a resume or cover letter from a starter</a></li>
+<li><a href="#sec:man-cover_letter_options"><span class="section-number main-number">3</span> Configure a cover letter</a></li>
+<li><a href="#sec:man-resume"><span class="section-number main-number">4</span> Render a resume</a></li>
+<li><a href="#sec:man-resume_options"><span class="section-number main-number">5</span> Configure a resume</a></li>
+<li><a href="#sec:man-use_resume"><span class="section-number main-number">6</span> Create a resume or cover letter from a starter</a></li>
 </ul>
 </div>
 <style type="text/css">
@@ -40,6 +42,7 @@ h2 {
 <p>
 <b>-- <kbd>C</kbd> --</b>
 <a href="#sec:man-cover_letter"><code>cover_letter()</code></a>
+<a href="#sec:man-cover_letter_options"><code>cover_letter_options()</code></a>
 </p>
 <p>
 <b>-- <kbd>L</kbd> --</b>
@@ -49,6 +52,7 @@ h2 {
 <p>
 <b>-- <kbd>R</kbd> --</b>
 <a href="#sec:man-resume"><code>resume()</code></a>
+<a href="#sec:man-resume_options"><code>resume_options()</code></a>
 </p>
 <p>
 <b>-- <kbd>U</kbd> --</b>
@@ -106,6 +110,48 @@ foreground in the wider right column.
 <pre><code class="language-r">cover_letter(
   input,
   output = NULL,
+  options = cover_letter_options(),
+  envir = parent.frame()
+)</code></pre>
+<h3 id="sec:arguments_1" class="unnumbered unlisted">Arguments</h3>
+<table role = "presentation">
+<tr><td><code>input</code></td>
+<td>
+<p>Path to a <code>.Rmd</code> or <code>.md</code> source document.</p>
+</td></tr>
+<tr><td><code>output</code></td>
+<td>
+<p>Output path ending in <code>.html</code> or <code>.pdf</code>. If <code>NULL</code>, an HTML
+file is created beside <code>input</code>.</p>
+</td></tr>
+<tr><td><code>options</code></td>
+<td>
+<p>A cover letter configuration created by
+<code><a href="#sec:man-cover-letter-options">cover_letter_options()</a></code>.</p>
+</td></tr>
+<tr><td><code>envir</code></td>
+<td>
+<p>Environment in which R code in <code>input</code> is evaluated.</p>
+</td></tr>
+</table>
+<h3 id="sec:value_1" class="unnumbered unlisted">Value</h3>
+<p>The normalized output path, invisibly.
+</p>
+<h3 id="sec:examples_1" class="unnumbered unlisted">Examples</h3>
+<pre><code class="language-r">source &lt;- use_cover_letter(tempfile(fileext = &quot;.Rmd&quot;))
+cover_letter(source, tempfile(fileext = &quot;.html&quot;))
+</code></pre>
+<pre><code class="language-r fade"># PDF output requires a local Chromium-based browser
+cover_letter(source, &quot;cover-letter.pdf&quot;)
+</code></pre>
+<h2 id="sec:man-cover_letter_options"><span class="section-number main-number">3</span> Configure a cover letter</h2>
+<h3 id="sec:description_3" class="unnumbered unlisted">Description</h3>
+<p>Create a classed options object for <code><a href="#sec:man-cover-letter">cover_letter()</a></code>. Settings work in the
+same way as <code><a href="#sec:man-resume-options">resume_options()</a></code>, with letter-specific metadata replacing the
+resume-specific fields.
+</p>
+<h3 id="sec:usage_2" class="unnumbered unlisted">Usage</h3>
+<pre><code class="language-r">cover_letter_options(
   author = NULL,
   address = NULL,
   phone = NULL,
@@ -127,28 +173,17 @@ foreground in the wider right column.
   link_color = NULL,
   paged = NULL,
   keep_html = FALSE,
-  browser = NULL,
-  envir = parent.frame()
+  browser = NULL
 )</code></pre>
-<h3 id="sec:arguments_1" class="unnumbered unlisted">Arguments</h3>
+<h3 id="sec:arguments_2" class="unnumbered unlisted">Arguments</h3>
 <table role = "presentation">
-<tr><td><code>input</code></td>
-<td>
-<p>Path to a <code>.Rmd</code> or <code>.md</code> source document.</p>
-</td></tr>
-<tr><td><code>output</code></td>
-<td>
-<p>Output path ending in <code>.html</code> or <code>.pdf</code>. If <code>NULL</code>, an HTML
-file is created beside <code>input</code>.</p>
-</td></tr>
 <tr><td><code>author</code>, <code>address</code>, <code>phone</code>, <code>email</code>, <code>website</code></td>
 <td>
-<p>Contact metadata. <code>NULL</code> uses the
-corresponding value in the source document's YAML header.</p>
+<p>Contact metadata.</p>
 </td></tr>
 <tr><td><code>date</code>, <code>greeting</code></td>
 <td>
-<p>Letter date and salutation. <code>NULL</code> uses YAML metadata.</p>
+<p>Letter date and salutation.</p>
 </td></tr>
 <tr><td><code>font_family</code></td>
 <td>
@@ -181,7 +216,8 @@ when replacing a font with different metrics.</p>
 <tr><td><code>ligatures</code></td>
 <td>
 <p>Whether to enable common and discretionary ligatures.
-Defaults to <code>FALSE</code> for more predictable text extraction from PDFs.</p>
+The template default is <code>FALSE</code> for more predictable text extraction from
+PDFs.</p>
 </td></tr>
 <tr><td><code>line_height</code></td>
 <td>
@@ -214,38 +250,176 @@ Printing always invokes the packaged pages.js pagination.</p>
 <tr><td><code>keep_html</code></td>
 <td>
 <p>For PDF output, whether to retain the intermediate HTML
-beside the PDF.</p>
+beside the PDF. Defaults to <code>FALSE</code>.</p>
 </td></tr>
 <tr><td><code>browser</code></td>
 <td>
 <p>Path to Chromium, Google Chrome, or Microsoft Edge. <code>NULL</code>
 lets <code><a href="https://rdrr.io/cran/xfun/man/browser_print.html">xfun::browser_print()</a></code> discover it.</p>
 </td></tr>
+</table>
+<h3 id="sec:value_2" class="unnumbered unlisted">Value</h3>
+<p>A <code>liteformats_cover_letter_options</code> object for the <code>options</code>
+argument of <code><a href="#sec:man-cover-letter">cover_letter()</a></code>.
+</p>
+<h3 id="sec:yaml-configuration_1" class="unnumbered unlisted">YAML configuration</h3>
+<p>Use the same flat, kebab-case <code>liteformats</code> mapping documented in
+<code><a href="#sec:man-resume-options">resume_options()</a></code>. Place cover-letter metadata such as <code>author</code>, <code>address</code>,
+<code>date</code>, and <code>greeting</code> at the top level of the YAML header. Unknown
+<code>liteformats</code> YAML names are rejected.
+</p>
+<h3 id="sec:examples_2" class="unnumbered unlisted">Examples</h3>
+<pre><code class="language-r">cover_letter_options(
+  greeting = &quot;Dear Search Committee:&quot;,
+  paragraph_spacing = &quot;0.9em&quot;
+)
+</code></pre>
+<pre><code>#&gt; $type
+#&gt; [1] &quot;cover-letter&quot;
+#&gt; 
+#&gt; $metadata
+#&gt; $metadata$author
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$address
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$phone
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$email
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$website
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$date
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$greeting
+#&gt; [1] &quot;Dear Search Committee:&quot;
+#&gt; 
+#&gt; 
+#&gt; $settings
+#&gt; $settings$font_family
+#&gt; NULL
+#&gt; 
+#&gt; $settings$google_font
+#&gt; NULL
+#&gt; 
+#&gt; $settings$font_files
+#&gt; NULL
+#&gt; 
+#&gt; $settings$font_size
+#&gt; NULL
+#&gt; 
+#&gt; $settings$font_scale
+#&gt; NULL
+#&gt; 
+#&gt; $settings$ligatures
+#&gt; NULL
+#&gt; 
+#&gt; $settings$line_height
+#&gt; NULL
+#&gt; 
+#&gt; $settings$paragraph_spacing
+#&gt; [1] &quot;0.9em&quot;
+#&gt; 
+#&gt; $settings$section_spacing
+#&gt; NULL
+#&gt; 
+#&gt; $settings$margins
+#&gt; NULL
+#&gt; 
+#&gt; $settings$paper
+#&gt; NULL
+#&gt; 
+#&gt; $settings$link_color
+#&gt; NULL
+#&gt; 
+#&gt; $settings$paged
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $keep_html
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $browser
+#&gt; NULL
+#&gt; 
+#&gt; attr(,&quot;class&quot;)
+#&gt; [1] &quot;liteformats_cover_letter_options&quot; &quot;liteformats_options&quot;             
+</code></pre>
+<h2 id="sec:man-resume"><span class="section-number main-number">4</span> Render a resume</h2>
+<h3 id="sec:description_4" class="unnumbered unlisted">Description</h3>
+<p>Render a Markdown or R Markdown resume to a self-contained HTML document or
+to PDF through a headless Chromium-based browser. The output format is
+inferred from the extension of <code>output</code>.
+</p>
+<h3 id="sec:usage_3" class="unnumbered unlisted">Usage</h3>
+<pre><code class="language-r">resume(
+  input,
+  output = NULL,
+  options = resume_options(),
+  envir = parent.frame()
+)</code></pre>
+<h3 id="sec:arguments_3" class="unnumbered unlisted">Arguments</h3>
+<table role = "presentation">
+<tr><td><code>input</code></td>
+<td>
+<p>Path to a <code>.Rmd</code> or <code>.md</code> source document.</p>
+</td></tr>
+<tr><td><code>output</code></td>
+<td>
+<p>Output path ending in <code>.html</code> or <code>.pdf</code>. If <code>NULL</code>, an HTML
+file is created beside <code>input</code>.</p>
+</td></tr>
+<tr><td><code>options</code></td>
+<td>
+<p>A resume configuration created by <code><a href="#sec:man-resume-options">resume_options()</a></code>.</p>
+</td></tr>
 <tr><td><code>envir</code></td>
 <td>
 <p>Environment in which R code in <code>input</code> is evaluated.</p>
 </td></tr>
 </table>
-<h3 id="sec:value_1" class="unnumbered unlisted">Value</h3>
+<h3 id="sec:details_2" class="unnumbered unlisted">Details</h3>
+<p>Document metadata and typographic settings may be supplied in the YAML
+header. Values in <code>options</code> take precedence over YAML. See <code><a href="#sec:man-resume-options">resume_options()</a></code>
+for function-call configuration and <code><a href="#sec:man-use-resume">use_resume()</a></code> for a complete starter.
+</p>
+<h3 id="sec:value_3" class="unnumbered unlisted">Value</h3>
 <p>The normalized output path, invisibly.
 </p>
-<h3 id="sec:examples_1" class="unnumbered unlisted">Examples</h3>
-<pre><code class="language-r">source &lt;- use_cover_letter(tempfile(fileext = &quot;.Rmd&quot;))
-cover_letter(source, tempfile(fileext = &quot;.html&quot;))
+<h3 id="sec:examples_3" class="unnumbered unlisted">Examples</h3>
+<pre><code class="language-r">source &lt;- use_resume(tempfile(fileext = &quot;.Rmd&quot;))
+resume(source, tempfile(fileext = &quot;.html&quot;))
 </code></pre>
 <pre><code class="language-r fade"># PDF output requires a local Chromium-based browser
-cover_letter(source, &quot;cover-letter.pdf&quot;)
+resume(source, &quot;resume.pdf&quot;)
+
+# Embed local font files
+resume(
+  source,
+  options = resume_options(
+    font_files = c(
+      regular = &quot;fonts/MySerif-Regular.woff2&quot;,
+      italic = &quot;fonts/MySerif-Italic.woff2&quot;,
+      bold = &quot;fonts/MySerif-Bold.woff2&quot;
+    ),
+    font_scale = 0.96,
+    ligatures = FALSE
+  )
+)
 </code></pre>
-<h2 id="sec:man-resume"><span class="section-number main-number">3</span> Render a resume</h2>
-<h3 id="sec:description_3" class="unnumbered unlisted">Description</h3>
-<p>Render a Markdown or R Markdown resume to a self-contained HTML document or
-to PDF through a headless Chromium-based browser. The output format is
-inferred from the extension of <code>output</code>.
+<h2 id="sec:man-resume_options"><span class="section-number main-number">5</span> Configure a resume</h2>
+<h3 id="sec:description_5" class="unnumbered unlisted">Description</h3>
+<p>Create a classed options object for <code><a href="#sec:man-resume">resume()</a></code>. The helper keeps secondary
+metadata, typography, page, and PDF controls out of the main rendering
+function while retaining argument-name checking and autocomplete.
 </p>
-<h3 id="sec:usage_2" class="unnumbered unlisted">Usage</h3>
-<pre><code class="language-r">resume(
-  input,
-  output = NULL,
+<h3 id="sec:usage_4" class="unnumbered unlisted">Usage</h3>
+<pre><code class="language-r">resume_options(
   author = NULL,
   job_title = NULL,
   address = NULL,
@@ -267,24 +441,13 @@ inferred from the extension of <code>output</code>.
   link_color = NULL,
   paged = NULL,
   keep_html = FALSE,
-  browser = NULL,
-  envir = parent.frame()
+  browser = NULL
 )</code></pre>
-<h3 id="sec:arguments_2" class="unnumbered unlisted">Arguments</h3>
+<h3 id="sec:arguments_4" class="unnumbered unlisted">Arguments</h3>
 <table role = "presentation">
-<tr><td><code>input</code></td>
-<td>
-<p>Path to a <code>.Rmd</code> or <code>.md</code> source document.</p>
-</td></tr>
-<tr><td><code>output</code></td>
-<td>
-<p>Output path ending in <code>.html</code> or <code>.pdf</code>. If <code>NULL</code>, an HTML
-file is created beside <code>input</code>.</p>
-</td></tr>
 <tr><td><code>author</code>, <code>address</code>, <code>phone</code>, <code>email</code>, <code>website</code></td>
 <td>
-<p>Contact metadata. <code>NULL</code> uses the
-corresponding value in the source document's YAML header.</p>
+<p>Contact metadata.</p>
 </td></tr>
 <tr><td><code>job_title</code>, <code>linkedin</code></td>
 <td>
@@ -321,7 +484,8 @@ when replacing a font with different metrics.</p>
 <tr><td><code>ligatures</code></td>
 <td>
 <p>Whether to enable common and discretionary ligatures.
-Defaults to <code>FALSE</code> for more predictable text extraction from PDFs.</p>
+The template default is <code>FALSE</code> for more predictable text extraction from
+PDFs.</p>
 </td></tr>
 <tr><td><code>line_height</code></td>
 <td>
@@ -354,56 +518,139 @@ Printing always invokes the packaged pages.js pagination.</p>
 <tr><td><code>keep_html</code></td>
 <td>
 <p>For PDF output, whether to retain the intermediate HTML
-beside the PDF.</p>
+beside the PDF. Defaults to <code>FALSE</code>.</p>
 </td></tr>
 <tr><td><code>browser</code></td>
 <td>
 <p>Path to Chromium, Google Chrome, or Microsoft Edge. <code>NULL</code>
 lets <code><a href="https://rdrr.io/cran/xfun/man/browser_print.html">xfun::browser_print()</a></code> discover it.</p>
 </td></tr>
-<tr><td><code>envir</code></td>
-<td>
-<p>Environment in which R code in <code>input</code> is evaluated.</p>
-</td></tr>
 </table>
-<h3 id="sec:details_2" class="unnumbered unlisted">Details</h3>
-<p>Document metadata and typographic settings may be supplied in the YAML
-header. Renderer arguments take precedence over YAML. See
-<code>use_resume()</code> for a complete starter document.
+<h3 id="sec:details_3" class="unnumbered unlisted">Details</h3>
+<p>Every argument defaults to <code>NULL</code> unless stated otherwise. A <code>NULL</code> metadata
+or appearance value falls back to the source document's YAML header and then
+to the template default. Values supplied here take precedence over YAML.
 </p>
-<h3 id="sec:value_2" class="unnumbered unlisted">Value</h3>
-<p>The normalized output path, invisibly.
+<h3 id="sec:value_4" class="unnumbered unlisted">Value</h3>
+<p>A <code>liteformats_resume_options</code> object for the <code>options</code> argument of
+<code><a href="#sec:man-resume">resume()</a></code>.
 </p>
-<h3 id="sec:examples_2" class="unnumbered unlisted">Examples</h3>
-<pre><code class="language-r">source &lt;- use_resume(tempfile(fileext = &quot;.Rmd&quot;))
-resume(source, tempfile(fileext = &quot;.html&quot;))
+<h3 id="sec:yaml-configuration_2" class="unnumbered unlisted">YAML configuration</h3>
+<p>In a source document, place metadata at the top level of the YAML header and
+appearance controls in one flat <code>liteformats</code> mapping. YAML setting names
+are the kebab-case equivalents of the helper arguments:
+</p>
+<pre><code class="language-yaml">author: "Jane Doe"
+job-title: "Research Scientist"
+liteformats:
+  paper: letter
+  margins: ["0.65in", "0.8in"]
+  font-family: "Charter, Georgia, serif"
+  font-size: 11pt
+  font-scale: 0.94
+  ligatures: false
+  line-height: 1.15
+  paragraph-spacing: 0.05em
+  section-spacing: 1em
+  link-color: "#385898"
+  paged: true
 </code></pre>
-<pre><code class="language-r fade"># PDF output requires a local Chromium-based browser
-resume(source, &quot;resume.pdf&quot;)
-
-# Embed local font files
-resume(
-  source,
-  font_files = c(
-    regular = &quot;fonts/MySerif-Regular.woff2&quot;,
-    italic = &quot;fonts/MySerif-Italic.woff2&quot;,
-    bold = &quot;fonts/MySerif-Bold.woff2&quot;
-  ),
-  font_scale = 0.96,
-  ligatures = FALSE
+<p>Unknown <code>liteformats</code> YAML names are rejected to catch misspellings.
+</p>
+<h3 id="sec:examples_4" class="unnumbered unlisted">Examples</h3>
+<pre><code class="language-r">resume_options(
+  font_size = &quot;10.5pt&quot;,
+  margins = c(&quot;0.6in&quot;, &quot;0.75in&quot;),
+  paged = FALSE
 )
 </code></pre>
-<h2 id="sec:man-use_resume"><span class="section-number main-number">4</span> Create a resume or cover letter from a starter</h2>
-<h3 id="sec:description_4" class="unnumbered unlisted">Description</h3>
+<pre><code>#&gt; $type
+#&gt; [1] &quot;resume&quot;
+#&gt; 
+#&gt; $metadata
+#&gt; $metadata$author
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$job_title
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$address
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$phone
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$email
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$website
+#&gt; NULL
+#&gt; 
+#&gt; $metadata$linkedin
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $settings
+#&gt; $settings$font_family
+#&gt; NULL
+#&gt; 
+#&gt; $settings$google_font
+#&gt; NULL
+#&gt; 
+#&gt; $settings$font_files
+#&gt; NULL
+#&gt; 
+#&gt; $settings$font_size
+#&gt; [1] &quot;10.5pt&quot;
+#&gt; 
+#&gt; $settings$font_scale
+#&gt; NULL
+#&gt; 
+#&gt; $settings$ligatures
+#&gt; NULL
+#&gt; 
+#&gt; $settings$line_height
+#&gt; NULL
+#&gt; 
+#&gt; $settings$paragraph_spacing
+#&gt; NULL
+#&gt; 
+#&gt; $settings$section_spacing
+#&gt; NULL
+#&gt; 
+#&gt; $settings$margins
+#&gt; [1] &quot;0.6in&quot;  &quot;0.75in&quot;
+#&gt; 
+#&gt; $settings$paper
+#&gt; NULL
+#&gt; 
+#&gt; $settings$link_color
+#&gt; NULL
+#&gt; 
+#&gt; $settings$paged
+#&gt; [1] FALSE
+#&gt; 
+#&gt; 
+#&gt; $keep_html
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $browser
+#&gt; NULL
+#&gt; 
+#&gt; attr(,&quot;class&quot;)
+#&gt; [1] &quot;liteformats_resume_options&quot; &quot;liteformats_options&quot;       
+</code></pre>
+<h2 id="sec:man-use_resume"><span class="section-number main-number">6</span> Create a resume or cover letter from a starter</h2>
+<h3 id="sec:description_6" class="unnumbered unlisted">Description</h3>
 <p>Copy an editable R Markdown starter document to <code>path</code>. Static assets used by
 the rendered formats remain inside the installed package; the copied source
 contains only Markdown content and YAML settings.
 </p>
-<h3 id="sec:usage_3" class="unnumbered unlisted">Usage</h3>
+<h3 id="sec:usage_5" class="unnumbered unlisted">Usage</h3>
 <pre><code class="language-r">use_resume(path = "resume.Rmd", overwrite = FALSE)
 
 use_cover_letter(path = "cover-letter.Rmd", overwrite = FALSE)</code></pre>
-<h3 id="sec:arguments_3" class="unnumbered unlisted">Arguments</h3>
+<h3 id="sec:arguments_5" class="unnumbered unlisted">Arguments</h3>
 <table role = "presentation">
 <tr><td><code>path</code></td>
 <td>
@@ -414,10 +661,10 @@ use_cover_letter(path = "cover-letter.Rmd", overwrite = FALSE)</code></pre>
 <p>Whether to replace an existing file.</p>
 </td></tr>
 </table>
-<h3 id="sec:value_3" class="unnumbered unlisted">Value</h3>
+<h3 id="sec:value_5" class="unnumbered unlisted">Value</h3>
 <p>The normalized destination path, invisibly.
 </p>
-<h3 id="sec:examples_3" class="unnumbered unlisted">Examples</h3>
+<h3 id="sec:examples_5" class="unnumbered unlisted">Examples</h3>
 <pre><code class="language-r">use_resume(tempfile(fileext = &quot;.Rmd&quot;))
 use_cover_letter(tempfile(fileext = &quot;.Rmd&quot;))
 </code></pre>

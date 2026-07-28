@@ -21,7 +21,7 @@
 <a href="playground/">Playground</a></p></nav>
 <div class="frontmatter">
 <div class="title"><h1>liteformats: Lightweight Output Formats for ‘litedown’</h1></div>
-<div class="date"><h3>2026-07-27</h3></div>
+<div class="date"><h3>2026-07-28</h3></div>
 </div>
 <div class="body">
 <div id="TOC">
@@ -150,33 +150,42 @@ needed to shape the documents into a particular look.</p>
   section-spacing: 1em
   link-color: &quot;#385898&quot;
 </code></pre>
-<p>They can also be supplied as renderer arguments. Local <code>.otf</code>, <code>.ttf</code>,
-<code>.woff</code>, and <code>.woff2</code> files are embedded in the output:</p>
+<p>This flat, kebab-case <code>liteformats</code> mapping is the canonical YAML
+configuration. Document metadata such as <code>author</code>, <code>job-title</code>, <code>address</code>, and
+<code>greeting</code> remains at the top level of the header, as shown in each starter.</p>
+<p>For builds that need to set or override YAML, pass a classed configuration from
+the matching options helper. Local <code>.otf</code>, <code>.ttf</code>, <code>.woff</code>, and <code>.woff2</code> files
+are embedded in the output:</p>
 <pre><code class="language-r">resume(
   &quot;resume.Rmd&quot;,
   &quot;resume.pdf&quot;,
-  font_files = c(
-    regular = &quot;fonts/MySerif-Regular.woff2&quot;,
-    italic = &quot;fonts/MySerif-Italic.woff2&quot;,
-    bold = &quot;fonts/MySerif-Bold.woff2&quot;
-  ),
-  font_scale = 0.96,
-  ligatures = FALSE
+  options = resume_options(
+    font_files = c(
+      regular = &quot;fonts/MySerif-Regular.woff2&quot;,
+      italic = &quot;fonts/MySerif-Italic.woff2&quot;,
+      bold = &quot;fonts/MySerif-Bold.woff2&quot;
+    ),
+    font_scale = 0.96,
+    ligatures = FALSE
+  )
 )
 </code></pre>
-<p>Set <code>google_font = &quot;Source Serif 4&quot;</code> to opt into Google Fonts at render time.
-liteformats uses a bundled font catalog to request the available weights and
-styles needed for regular, bold, italic, and bold-italic text. For a variable
-font, it requests the smallest weight range covering regular and bold;
-unsupported combinations are omitted instead of making the whole Google Fonts
-request fail. A full CSS v2 URL is accepted when you need different weights or
-axes:</p>
+<p>Set <code>google_font = &quot;Source Serif 4&quot;</code> in <code>resume_options()</code> (or set
+<code>google-font: &quot;Source Serif 4&quot;</code> in YAML) to opt into Google Fonts at render
+time. liteformats uses a bundled font catalog to request the available weights
+and styles needed for regular, bold, italic, and bold-italic text. For a
+variable font, it requests the smallest weight range covering regular and
+bold; unsupported combinations are omitted instead of making the whole Google
+Fonts request fail. A full CSS v2 URL is accepted when you need different
+weights or axes:</p>
 <pre><code class="language-r">resume(
   &quot;resume.Rmd&quot;,
-  google_font = paste0(
-    &quot;https://fonts.googleapis.com/css2?&quot;,
-    &quot;family=Inter:ital,opsz,wght@0,14..32,100..900;&quot;,
-    &quot;1,14..32,100..900&amp;display=swap&quot;
+  options = resume_options(
+    google_font = paste0(
+      &quot;https://fonts.googleapis.com/css2?&quot;,
+      &quot;family=Inter:ital,opsz,wght@0,14..32,100..900;&quot;,
+      &quot;1,14..32,100..900&amp;display=swap&quot;
+    )
   )
 )
 </code></pre>
