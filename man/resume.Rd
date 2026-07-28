@@ -7,28 +7,7 @@
 resume(
   input,
   output = NULL,
-  author = NULL,
-  job_title = NULL,
-  address = NULL,
-  phone = NULL,
-  email = NULL,
-  website = NULL,
-  linkedin = NULL,
-  font_family = NULL,
-  google_font = NULL,
-  font_files = NULL,
-  font_size = NULL,
-  font_scale = NULL,
-  ligatures = NULL,
-  line_height = NULL,
-  paragraph_spacing = NULL,
-  section_spacing = NULL,
-  margins = NULL,
-  paper = NULL,
-  link_color = NULL,
-  paged = NULL,
-  keep_html = FALSE,
-  browser = NULL,
+  options = resume_options(),
   envir = parent.frame()
 )
 }
@@ -38,53 +17,7 @@ resume(
 \item{output}{Output path ending in \code{.html} or \code{.pdf}. If \code{NULL}, an HTML
 file is created beside \code{input}.}
 
-\item{author, address, phone, email, website}{Contact metadata. \code{NULL} uses the
-corresponding value in the source document's YAML header.}
-
-\item{job_title, linkedin}{Resume-specific professional and contact metadata.}
-
-\item{font_family}{A CSS \code{font-family} value. For example,
-\code{"Charter, Georgia, serif"}.}
-
-\item{google_font}{A Google Fonts family name or a full Google Fonts CSS v2
-URL. This is an explicit online resource and is never used by default.
-A family name loads the available weights and styles needed for regular,
-bold, italic, and bold italic text, preferring a variable weight range.
-Supply a full URL to select other weights, axes, or options.}
-
-\item{font_files}{A named character vector or list of local font files. Names
-may be \code{regular}, \code{italic}, \code{bold}, and \code{bold_italic}. Relative paths are
-resolved from the source document. Fonts are embedded in the HTML.}
-
-\item{font_size}{A CSS length such as \code{"11pt"}.}
-
-\item{font_scale}{A positive number used to scale \code{font_size}. This is useful
-when replacing a font with different metrics.}
-
-\item{ligatures}{Whether to enable common and discretionary ligatures.
-Defaults to \code{FALSE} for more predictable text extraction from PDFs.}
-
-\item{line_height}{A positive unitless CSS line height or CSS length.}
-
-\item{paragraph_spacing, section_spacing}{CSS lengths controlling vertical
-rhythm.}
-
-\item{margins}{Page margins. Supply one to four CSS lengths using standard
-CSS shorthand order, or numeric values interpreted as inches.}
-
-\item{paper}{A paper name (\code{"letter"}, \code{"a4"}, or \code{"legal"}) or a
-two-element vector containing width and height as CSS lengths.}
-
-\item{link_color}{Any valid CSS color.}
-
-\item{paged}{Whether the HTML preview should open in a paginated layout.
-Printing always invokes the packaged pages.js pagination.}
-
-\item{keep_html}{For PDF output, whether to retain the intermediate HTML
-beside the PDF.}
-
-\item{browser}{Path to Chromium, Google Chrome, or Microsoft Edge. \code{NULL}
-lets \code{\link[xfun:browser_print]{xfun::browser_print()}} discover it.}
+\item{options}{A resume configuration created by \code{\link[=resume_options]{resume_options()}}.}
 
 \item{envir}{Environment in which R code in \code{input} is evaluated.}
 }
@@ -98,8 +31,8 @@ inferred from the extension of \code{output}.
 }
 \details{
 Document metadata and typographic settings may be supplied in the YAML
-header. Renderer arguments take precedence over YAML. See
-\code{use_resume()} for a complete starter document.
+header. Values in \code{options} take precedence over YAML. See \code{\link[=resume_options]{resume_options()}}
+for function-call configuration and \code{\link[=use_resume]{use_resume()}} for a complete starter.
 }
 \examples{
 source <- use_resume(tempfile(fileext = ".Rmd"))
@@ -112,13 +45,15 @@ resume(source, "resume.pdf")
 # Embed local font files
 resume(
   source,
-  font_files = c(
-    regular = "fonts/MySerif-Regular.woff2",
-    italic = "fonts/MySerif-Italic.woff2",
-    bold = "fonts/MySerif-Bold.woff2"
-  ),
-  font_scale = 0.96,
-  ligatures = FALSE
+  options = resume_options(
+    font_files = c(
+      regular = "fonts/MySerif-Regular.woff2",
+      italic = "fonts/MySerif-Italic.woff2",
+      bold = "fonts/MySerif-Bold.woff2"
+    ),
+    font_scale = 0.96,
+    ligatures = FALSE
+  )
 )
 }
 }
