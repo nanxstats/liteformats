@@ -21,20 +21,14 @@ pak::pak("nanxstats/liteformats")
 
 ## Usage
 
-Load liteformats once per R session:
-
-``` r
-library(liteformats)
-```
-
 ### Resume
 
 Create the resume starter, then render it to self-contained HTML or PDF:
 
 ``` r
-use_resume("resume.Rmd")
-resume("resume.Rmd", "resume.html")
-resume("resume.Rmd", "resume.pdf")
+liteformats::use_resume("resume.Rmd")
+liteformats::resume("resume.Rmd", "resume.html")
+liteformats::resume("resume.Rmd", "resume.pdf")
 ```
 
 ### Cover letter
@@ -42,106 +36,23 @@ resume("resume.Rmd", "resume.pdf")
 Use the matching `cover_letter()` renderer for the cover letter starter:
 
 ``` r
-use_cover_letter("cover-letter.Rmd")
-cover_letter("cover-letter.Rmd", "cover-letter.html")
-cover_letter("cover-letter.Rmd", "cover-letter.pdf")
+liteformats::use_cover_letter("cover-letter.Rmd")
+liteformats::cover_letter("cover-letter.Rmd", "cover-letter.html")
+liteformats::cover_letter("cover-letter.Rmd", "cover-letter.pdf")
 ```
 
 HTML output is self-contained. A `.pdf` output path prints the HTML through
-headless Chrome.
+headless Chrome, which must be installed to create PDFs but is not needed for
+HTML output.
 
-## Automate builds with Make
+## Customize and automate
 
-Rendering from explicit R commands takes a little more setup than clicking a
-Knit button, but it also makes the process easy to customize and combine with
-other tools. Put repeatable commands in a `Makefile` to rebuild only documents
-whose sources have changed:
+Typography, spacing, margins, paper size, and link color can be configured in
+the document YAML or with `liteformats::resume_options()` and
+`liteformats::cover_letter_options()`. Local font files are embedded in the
+output; Google Fonts are available as an explicit, network-dependent opt-in.
+Ligatures are disabled by default to improve ATS text extraction.
 
-``` make
-.PHONY: all clean
-
-all: resume.html resume.pdf cover-letter.html cover-letter.pdf
-
-resume.html resume.pdf: resume.Rmd
-	Rscript -e 'liteformats::resume("$<", "$@")'
-
-cover-letter.html cover-letter.pdf: cover-letter.Rmd
-	Rscript -e 'liteformats::cover_letter("$<", "$@")'
-
-clean:
-	$(RM) resume.html resume.pdf cover-letter.html cover-letter.pdf
-```
-
-Run `make` for all outputs or, for example, `make resume.pdf` for one. Extend
-the recipes with any preprocessing, postprocessing, or project-specific options
-needed to shape the documents into a particular look.
-
-Core typography and fitting controls can live in the document's YAML:
-
-``` yaml
-liteformats:
-  paper: letter
-  margins: ["0.65in", "0.8in"]
-  font-family: "Charter, Georgia, serif"
-  font-size: 11pt
-  font-scale: 0.94
-  ligatures: false
-  line-height: 1.15
-  paragraph-spacing: 0.05em
-  section-spacing: 1em
-  link-color: "#385898"
-```
-
-This flat, kebab-case `liteformats` mapping is the canonical YAML
-configuration. Document metadata such as `author`, `job-title`, `address`, and
-`greeting` remains at the top level of the header, as shown in each starter.
-
-For builds that need to set or override YAML, pass a classed configuration from
-the matching options helper. Local `.otf`, `.ttf`, `.woff`, and `.woff2` files
-are embedded in the output:
-
-``` r
-resume(
-  "resume.Rmd",
-  "resume.pdf",
-  options = resume_options(
-    font_files = c(
-      regular = "fonts/MySerif-Regular.woff2",
-      italic = "fonts/MySerif-Italic.woff2",
-      bold = "fonts/MySerif-Bold.woff2"
-    ),
-    font_scale = 0.96,
-    ligatures = FALSE
-  )
-)
-```
-
-Set `google_font = "Source Serif 4"` in `resume_options()` (or set
-`google-font: "Source Serif 4"` in YAML) to opt into Google Fonts at render
-time. liteformats uses a bundled font catalog to request the available weights
-and styles needed for regular, bold, italic, and bold-italic text. For a
-variable font, it requests the smallest weight range covering regular and
-bold; unsupported combinations are omitted instead of making the whole Google
-Fonts request fail. A full CSS v2 URL is accepted when you need different
-weights or axes:
-
-``` r
-resume(
-  "resume.Rmd",
-  options = resume_options(
-    google_font = paste0(
-      "https://fonts.googleapis.com/css2?",
-      "family=Inter:ital,opsz,wght@0,14..32,100..900;",
-      "1,14..32,100..900&display=swap"
-    )
-  )
-)
-```
-
-The full-URL form also supports families newer than the bundled catalog.
-Google Fonts remains deliberately opt-in. Package installation, checks,
-examples, and vignettes never need network access.
-
-Ligatures are disabled by default, but PDF text extraction can also depend on
-the selected font's internal tables. When ATS parsing matters, inspect the
-result with a tool such as `pdftotext resume.pdf -` before submitting it.
+For configuration examples, the resume entry syntax, cover letter metadata,
+and a Makefile workflow for repeatable builds, see the
+[resumes and cover letters vignette](https://nanx.me/liteformats/doc/formats.html).

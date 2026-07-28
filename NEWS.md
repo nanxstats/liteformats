@@ -22,6 +22,12 @@
   supported for custom axes and newer families. A maintainer script was added
   to refresh the catalog without Google API credentials (#10).
 
+## Documentation
+
+- Qualified the namespaces in code examples of the README so they become
+  self-contained. Removed configuration, typography, and automation
+  details and redirect to the vignette to reduce duplication (#14).
+
 # liteformats 0.1.0
 
 ## New features
