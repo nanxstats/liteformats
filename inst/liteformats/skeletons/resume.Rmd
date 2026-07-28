@@ -1,5 +1,5 @@
 ---
-title: "Jane Doe --- Resume"
+title: "Jane Doe - Resume"
 author: "Jane Doe"
 job-title: "Quantitative Scientist · Research Software Leader"
 address: "Example City, EX"
@@ -84,9 +84,9 @@ BSc in Mathematics, summa cum laude [2010](){.resume-meta}
 
 ## Selected Open Source Projects
 
-- **lumen** --- workflow tools for reviewable statistical analyses [project site](https://example.com)
-- **clearplot** --- accessible themes and scales for scientific graphics [project site](https://example.com)
-- **trialcraft** --- simulation utilities for adaptive study designs [project site](https://example.com)
+- **lumen**: workflow tools for reviewable statistical analyses [project site](https://example.com)
+- **clearplot**: accessible themes and scales for scientific graphics [project site](https://example.com)
+- **trialcraft**: simulation utilities for adaptive study designs [project site](https://example.com)
 
 ## Selected Publications
 

@@ -1,5 +1,5 @@
 ---
-title: "Jane Doe --- Cover Letter"
+title: "Jane Doe - Cover Letter"
 author: "Jane Doe"
 address: ["123 Example Street", "Example City, EX 00000"]
 phone: "(000) 000-0000"
