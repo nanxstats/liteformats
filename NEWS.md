@@ -10,6 +10,11 @@
 
 ## Improvements
 
+- Simplified `resume()` and `cover_letter()` to four primary arguments.
+  Secondary metadata, typography, pagination, and PDF controls now live in
+  classed `resume_options()` and `cover_letter_options()` objects. The same
+  internal option schema can be reused by future document formats, and the
+  canonical YAML configuration is now checked for unknown names (#12).
 - Refactored opt-in Google Fonts loading to use bundled font metadata.
   Font family names now request the available weights and styles needed for
   regular, bold, italic, and bold-italic text, prefer variable weight and
