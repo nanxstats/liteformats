@@ -35,7 +35,7 @@
 .resume-contact span:not(:last-child)::after {
   margin-left: 0.5em;
   color: #777;
-  content: "·";
+  content: "\00B7";
 }
 
 .liteformats-resume h2 {
