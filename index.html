@@ -33,7 +33,7 @@
 <li><a href="#sec:cover-letter"><span class="section-number">2.2</span> Cover letter</a></li>
 </ul>
 </li>
-<li><a href="#sec:automate-builds-with-make"><span class="section-number main-number">3</span> Automate builds with Make</a></li>
+<li><a href="#sec:customize-and-automate"><span class="section-number main-number">3</span> Customize and automate</a></li>
 <li><a href="#sec:appendix">Appendix</a></li>
 </ul>
 </div>
@@ -99,102 +99,30 @@ Pandoc nor LaTeX.</p>
 pak::pak(&quot;nanxstats/liteformats&quot;)
 </code></pre>
 <h2 id="sec:usage"><span class="section-number main-number">2</span> Usage</h2>
-<p>Load liteformats once per R session:</p>
-<pre><code class="language-r">library(liteformats)
-</code></pre>
 <h3 id="sec:resume"><span class="section-number">2.1</span> Resume</h3>
 <p>Create the resume starter, then render it to self-contained HTML or PDF:</p>
-<pre><code class="language-r">use_resume(&quot;resume.Rmd&quot;)
-resume(&quot;resume.Rmd&quot;, &quot;resume.html&quot;)
-resume(&quot;resume.Rmd&quot;, &quot;resume.pdf&quot;)
+<pre><code class="language-r">liteformats::use_resume(&quot;resume.Rmd&quot;)
+liteformats::resume(&quot;resume.Rmd&quot;, &quot;resume.html&quot;)
+liteformats::resume(&quot;resume.Rmd&quot;, &quot;resume.pdf&quot;)
 </code></pre>
 <h3 id="sec:cover-letter"><span class="section-number">2.2</span> Cover letter</h3>
 <p>Use the matching <code>cover_letter()</code> renderer for the cover letter starter:</p>
-<pre><code class="language-r">use_cover_letter(&quot;cover-letter.Rmd&quot;)
-cover_letter(&quot;cover-letter.Rmd&quot;, &quot;cover-letter.html&quot;)
-cover_letter(&quot;cover-letter.Rmd&quot;, &quot;cover-letter.pdf&quot;)
+<pre><code class="language-r">liteformats::use_cover_letter(&quot;cover-letter.Rmd&quot;)
+liteformats::cover_letter(&quot;cover-letter.Rmd&quot;, &quot;cover-letter.html&quot;)
+liteformats::cover_letter(&quot;cover-letter.Rmd&quot;, &quot;cover-letter.pdf&quot;)
 </code></pre>
 <p>HTML output is self-contained. A <code>.pdf</code> output path prints the HTML through
-headless Chrome.</p>
-<h2 id="sec:automate-builds-with-make"><span class="section-number main-number">3</span> Automate builds with Make</h2>
-<p>Rendering from explicit R commands takes a little more setup than clicking a
-Knit button, but it also makes the process easy to customize and combine with
-other tools. Put repeatable commands in a <code>Makefile</code> to rebuild only documents
-whose sources have changed:</p>
-<pre><code class="language-make">.PHONY: all clean
-
-all: resume.html resume.pdf cover-letter.html cover-letter.pdf
-
-resume.html resume.pdf: resume.Rmd
-	Rscript -e 'liteformats::resume(&quot;$&lt;&quot;, &quot;$@&quot;)'
-
-cover-letter.html cover-letter.pdf: cover-letter.Rmd
-	Rscript -e 'liteformats::cover_letter(&quot;$&lt;&quot;, &quot;$@&quot;)'
-
-clean:
-	$(RM) resume.html resume.pdf cover-letter.html cover-letter.pdf
-</code></pre>
-<p>Run <code>make</code> for all outputs or, for example, <code>make resume.pdf</code> for one. Extend
-the recipes with any preprocessing, postprocessing, or project-specific options
-needed to shape the documents into a particular look.</p>
-<p>Core typography and fitting controls can live in the document’s YAML:</p>
-<pre><code class="language-yaml">liteformats:
-  paper: letter
-  margins: [&quot;0.65in&quot;, &quot;0.8in&quot;]
-  font-family: &quot;Charter, Georgia, serif&quot;
-  font-size: 11pt
-  font-scale: 0.94
-  ligatures: false
-  line-height: 1.15
-  paragraph-spacing: 0.05em
-  section-spacing: 1em
-  link-color: &quot;#385898&quot;
-</code></pre>
-<p>This flat, kebab-case <code>liteformats</code> mapping is the canonical YAML
-configuration. Document metadata such as <code>author</code>, <code>job-title</code>, <code>address</code>, and
-<code>greeting</code> remains at the top level of the header, as shown in each starter.</p>
-<p>For builds that need to set or override YAML, pass a classed configuration from
-the matching options helper. Local <code>.otf</code>, <code>.ttf</code>, <code>.woff</code>, and <code>.woff2</code> files
-are embedded in the output:</p>
-<pre><code class="language-r">resume(
-  &quot;resume.Rmd&quot;,
-  &quot;resume.pdf&quot;,
-  options = resume_options(
-    font_files = c(
-      regular = &quot;fonts/MySerif-Regular.woff2&quot;,
-      italic = &quot;fonts/MySerif-Italic.woff2&quot;,
-      bold = &quot;fonts/MySerif-Bold.woff2&quot;
-    ),
-    font_scale = 0.96,
-    ligatures = FALSE
-  )
-)
-</code></pre>
-<p>Set <code>google_font = &quot;Source Serif 4&quot;</code> in <code>resume_options()</code> (or set
-<code>google-font: &quot;Source Serif 4&quot;</code> in YAML) to opt into Google Fonts at render
-time. liteformats uses a bundled font catalog to request the available weights
-and styles needed for regular, bold, italic, and bold-italic text. For a
-variable font, it requests the smallest weight range covering regular and
-bold; unsupported combinations are omitted instead of making the whole Google
-Fonts request fail. A full CSS v2 URL is accepted when you need different
-weights or axes:</p>
-<pre><code class="language-r">resume(
-  &quot;resume.Rmd&quot;,
-  options = resume_options(
-    google_font = paste0(
-      &quot;https://fonts.googleapis.com/css2?&quot;,
-      &quot;family=Inter:ital,opsz,wght@0,14..32,100..900;&quot;,
-      &quot;1,14..32,100..900&amp;display=swap&quot;
-    )
-  )
-)
-</code></pre>
-<p>The full-URL form also supports families newer than the bundled catalog.
-Google Fonts remains deliberately opt-in. Package installation, checks,
-examples, and vignettes never need network access.</p>
-<p>Ligatures are disabled by default, but PDF text extraction can also depend on
-the selected font’s internal tables. When ATS parsing matters, inspect the
-result with a tool such as <code>pdftotext resume.pdf -</code> before submitting it.</p>
+headless Chrome, which must be installed to create PDFs but is not needed for
+HTML output.</p>
+<h2 id="sec:customize-and-automate"><span class="section-number main-number">3</span> Customize and automate</h2>
+<p>Typography, spacing, margins, paper size, and link color can be configured in
+the document YAML or with <code>liteformats::resume_options()</code> and
+<code>liteformats::cover_letter_options()</code>. Local font files are embedded in the
+output; Google Fonts are available as an explicit, network-dependent opt-in.
+Ligatures are disabled by default to improve ATS text extraction.</p>
+<p>For configuration examples, the resume entry syntax, cover letter metadata,
+and a Makefile workflow for repeatable builds, see the
+<a href="https://nanx.me/liteformats/doc/formats.html">resumes and cover letters vignette</a>.</p>
 <h2 id="sec:appendix" class="appendix">Appendix</h2>
 <p>To cite the package <strong>liteformats</strong> in publications, please use:</p>
 <p>Xiao N (2026). <em>liteformats: Lightweight Output Formats for
