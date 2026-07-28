@@ -1,5 +1,9 @@
 # liteformats
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/nanxstats/liteformats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nanxstats/liteformats/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 ``` text
 .__  .__  __          _____                            __
 |  | |__|/  |_  _____/ ____\___________  _____ _____ _/  |_  ______
@@ -8,10 +12,6 @@
 |____/__||__|  \___  >__|  \____/|__|  |__|_|  (____  /__| /____  >
                    \/                        \/     \/          \/
 ```
-
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/nanxstats/liteformats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nanxstats/liteformats/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
 
 liteformats provides lightweight, carefully typeset document formats for
 [litedown](https://github.com/yihui/litedown). The first formats are a
