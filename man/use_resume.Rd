@@ -19,8 +19,8 @@ The normalized destination path, invisibly.
 }
 \description{
 Copy an editable R Markdown starter document to \code{path}. Static assets used by
-the rendered formats remain inside the installed package; the copied source
-contains only Markdown content and YAML settings.
+the rendered formats remain inside the installed package and are referenced
+from the copied source instead of being copied beside it.
 }
 \examples{
 use_resume(tempfile(fileext = ".Rmd"))
