@@ -2,6 +2,7 @@
 
 export(cover_letter)
 export(cover_letter_options)
+export(include_graphics)
 export(resume)
 export(resume_options)
 export(use_cover_letter)
