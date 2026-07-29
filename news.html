@@ -26,6 +26,7 @@
 <ul>
 <li><a href="#sec:liteformats-development-version">liteformats (development version)</a>
 <ul>
+<li><a href="#sec:new-features_1">New features</a></li>
 <li><a href="#sec:bug-fixes">Bug fixes</a></li>
 <li><a href="#sec:improvements">Improvements</a></li>
 <li><a href="#sec:documentation_1">Documentation</a></li>
@@ -33,7 +34,7 @@
 </li>
 <li><a href="#sec:liteformats-0-1-0">liteformats 0.1.0</a>
 <ul>
-<li><a href="#sec:new-features">New features</a></li>
+<li><a href="#sec:new-features_2">New features</a></li>
 <li><a href="#sec:testing">Testing</a></li>
 <li><a href="#sec:documentation_2">Documentation</a></li>
 <li><a href="#sec:maintenance">Maintenance</a></li>
@@ -42,6 +43,12 @@
 </ul>
 </div>
 <h2 id="sec:liteformats-development-version" class="unnumbered">liteformats (development version)</h2>
+<h3 id="sec:new-features_1" class="unnumbered">New features</h3>
+<ul>
+<li>Added <code>liteformats::include_graphics()</code> to embed local images as base64
+data URIs in raw HTML that can be emitted directly from litedown code chunks.
+Added a bundled signature image to the cover letter starter (#20).</li>
+</ul>
 <h3 id="sec:bug-fixes" class="unnumbered">Bug fixes</h3>
 <ul>
 <li>Fixed overly aggressive resume pagination that treated complete experiences
@@ -71,7 +78,7 @@ self-contained. Removed configuration, typography, and automation
 details and redirect to the vignette to reduce duplication (#14).</li>
 </ul>
 <h2 id="sec:liteformats-0-1-0" class="unnumbered">liteformats 0.1.0</h2>
-<h3 id="sec:new-features" class="unnumbered">New features</h3>
+<h3 id="sec:new-features_2" class="unnumbered">New features</h3>
 <ul>
 <li>Added <code>resume()</code> and <code>cover_letter()</code> formats for self-contained HTML and
 direct PDF output through a Chromium-based browser (#1).</li>
