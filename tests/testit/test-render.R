@@ -40,6 +40,36 @@ assert("cover-letter starter renders its semantic columns", {
   (grepl("Example City, EX 00000", html, fixed = TRUE))
   (grepl("(000) 000-0000", html, fixed = TRUE))
   (grepl("Dear Hiring Committee:", html, fixed = TRUE))
+  (grepl('<img src="data:image/png;base64,', html, fixed = TRUE))
+  (grepl('alt="Jane Doe signature" class="signature"', html, fixed = TRUE))
+  (grepl('class="signature-name"', html, fixed = TRUE))
+  (!grepl("liteformats/skeletons/signature.png", html, fixed = TRUE))
+})
+
+assert("local graphics become raw, self-contained HTML", {
+  path <- liteformats_file("skeletons", "signature.png")
+  graphic <- include_graphics(
+    path,
+    alt = 'A "quoted" & accessible signature',
+    class = "signature"
+  )
+  html <- paste(as.character(graphic), collapse = "\n")
+  missing <- try(
+    include_graphics(file.path(tempdir(), "missing-signature.png")),
+    silent = TRUE
+  )
+
+  (inherits(graphic, "record_asis"))
+  (grepl("``` {=html}", html, fixed = TRUE))
+  (grepl('src="data:image/png;base64,', html, fixed = TRUE))
+  (grepl(
+    'alt="A &quot;quoted&quot; &amp; accessible signature"',
+    html,
+    fixed = TRUE
+  ))
+  (grepl('class="signature"', html, fixed = TRUE))
+  (inherits(missing, "try-error"))
+  (grepl("Graphic file does not exist", as.character(missing), fixed = TRUE))
 })
 
 assert("page dimensions and shorthand margins are normalized", {
