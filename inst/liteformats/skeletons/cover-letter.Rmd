@@ -61,4 +61,16 @@ programs.
 
 Sincerely,
 
+```{r}
+#| echo = FALSE
+liteformats::include_graphics(
+  system.file(
+    "liteformats/skeletons/signature.png",
+    package = "liteformats"
+  ),
+  alt = "Jane Doe signature",
+  class = "signature"
+)
+```
+
 [Jane Doe](){.signature-name}
