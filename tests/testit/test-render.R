@@ -13,6 +13,7 @@ assert("resume starter renders to offline, self-contained HTML", {
   (grepl("entry.replaceWith(...parts)", html, fixed = TRUE))
   (!grepl("resume-section-group", html, fixed = TRUE))
   (grepl(".liteformats-resume ul,", html, fixed = TRUE))
+  (grepl("transform: scaleY(0.5313333333);", html, fixed = TRUE))
   (!grepl("cdn.jsdelivr.net", html, fixed = TRUE))
   (!grepl("fonts.googleapis.com", html, fixed = TRUE))
   (grepl("Example City, EX", html, fixed = TRUE))
