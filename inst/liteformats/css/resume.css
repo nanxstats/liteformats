@@ -39,12 +39,26 @@
 }
 
 .liteformats-resume h2 {
+  position: relative;
   margin: var(--lf-section-spacing) 0 0.35em;
   padding: 0 0 0.2em;
-  border-bottom: 0.075em solid currentcolor;
+  border-bottom: 1px solid transparent;
   font-size: 1.42em;
   line-height: 1.08;
   break-after: avoid;
+}
+
+.liteformats-resume h2::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: currentcolor;
+  content: "";
+  /* Chromium floors borders at 1px; scale to LaTeX's 0.3985 PDF pt. */
+  transform: scaleY(0.5313333333);
+  transform-origin: top;
 }
 
 .liteformats-resume h2:first-of-type {

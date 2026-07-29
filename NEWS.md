@@ -27,6 +27,9 @@
   slant ranges, and omit unsupported combinations. Full CSS v2 URLs remain
   supported for custom axes and newer families. A maintainer script was added
   to refresh the catalog without Google API credentials (#10).
+- Matched resume section divider rules to LaTeX's 0.4 TeX point rule thickness,
+  using a scaled rule to avoid Chromium's 1px minimum for CSS borders
+  in PDF output (#21).
 
 ## Documentation
 
