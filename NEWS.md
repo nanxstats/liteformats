@@ -1,5 +1,11 @@
 # liteformats (development version)
 
+## New features
+
+- Added `liteformats::include_graphics()` to embed local images as base64
+  data URIs in raw HTML that can be emitted directly from litedown code chunks.
+  Added a bundled signature image to the cover letter starter (#20).
+
 ## Bug fixes
 
 - Fixed overly aggressive resume pagination that treated complete experiences
