@@ -3,9 +3,7 @@
 
 ^\.github$
 ^docs$
-^pkgdown$
 ^vendor$
-^_pkgdown\.yml$
+^tools$
 ^AGENTS\.md$
 ^LICENSE\.md$
-^tools$
