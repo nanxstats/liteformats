@@ -5,15 +5,6 @@
 [![R-CMD-check](https://github.com/nanxstats/liteformats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nanxstats/liteformats/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-``` text
-.__  .__  __          _____                            __
-|  | |__|/  |_  _____/ ____\___________  _____ _____ _/  |_  ______
-|  | |  \   __\/ __ \   __\/  _ \_  __ \/     \\__  \\   __\/  ___/
-|  |_|  ||  | \  ___/|  | (  <_> )  | \/  Y Y  \/ __ \|  |  \___ \
-|____/__||__|  \___  >__|  \____/|__|  |__|_|  (____  /__| /____  >
-                   \/                        \/     \/          \/
-```
-
 liteformats provides lightweight, carefully typeset document formats for
 [litedown](https://github.com/yihui/litedown). The first formats are a
 professional resume and a two-column cover letter. They use HTML and CSS,
