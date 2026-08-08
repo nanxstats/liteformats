@@ -1,7 +1,0 @@
-url: https://nanx.me/liteformats/
-
-template:
-  bootstrap: 5
-  bslib:
-    preset: "bootstrap"
-  math-rendering: "mathjax"
