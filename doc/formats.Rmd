@@ -5,8 +5,8 @@ output:
     meta:
       css: default
 vignette: >
-  %\VignetteEngine{litedown::vignette}
   %\VignetteIndexEntry{Resumes and cover letters}
+  %\VignetteEngine{litedown::vignette}
   %\VignetteEncoding{UTF-8}
 ---
 
