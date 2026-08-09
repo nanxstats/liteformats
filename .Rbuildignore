@@ -1,9 +1,12 @@
 ^liteformats\.Rproj$
 ^\.Rproj\.user$
 
-^\.github$
-^docs$
 ^vendor$
+^\.github$
 ^tools$
 ^AGENTS\.md$
 ^LICENSE\.md$
+
+^docs$
+^_pkgdown\.yml$
+^pkgdown$
