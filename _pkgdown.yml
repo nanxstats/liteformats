@@ -5,3 +5,20 @@ template:
   bslib:
     preset: "bootstrap"
   math-rendering: "mathjax"
+
+reference:
+  - title: "Formats"
+    contents:
+      - cover_letter
+      - cover_letter_options
+      - resume
+      - resume_options
+
+  - title: "Scaffolding"
+    contents:
+      - use_cover_letter
+      - use_resume
+
+  - title: "Utilities"
+    contents:
+      - include_graphics
