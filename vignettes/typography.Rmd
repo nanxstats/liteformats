@@ -1,0 +1,96 @@
+---
+title: "Typography"
+output:
+  html:
+    meta:
+      css: default
+vignette: >
+  %\VignetteIndexEntry{Typography}
+  %\VignetteEngine{litedown::vignette}
+  %\VignetteEncoding{UTF-8}
+---
+
+The main typography and vertical rhythm controls can be set together in YAML:
+
+``` yaml
+liteformats:
+  font-family: "Charter, Georgia, serif"
+  font-size: 11pt
+  font-scale: 0.94
+  ligatures: false
+  line-height: 1.15
+  paragraph-spacing: 0.05em
+  section-spacing: 1em
+```
+
+`font-scale` adjusts the effective font size without changing the nominal
+`font-size`, which is useful when switching between families with different
+metrics. The spacing controls accept CSS values. Format defaults may differ to
+fit their content and composition.
+
+## Use local fonts
+
+A local family can provide regular, italic, bold, and bold italic font files.
+OTF, TTF, WOFF, and WOFF2 files are embedded as data URIs, keeping the HTML
+portable and allowing PDF rendering to work offline.
+
+```{r}
+#| eval = FALSE
+liteformats::resume(
+  "resume.Rmd",
+  options = liteformats::resume_options(
+    font_files = c(
+      regular = "fonts/MySerif-Regular.otf",
+      italic = "fonts/MySerif-Italic.otf",
+      bold = "fonts/MySerif-Bold.otf"
+    ),
+    font_scale = 0.9,
+    ligatures = FALSE
+  )
+)
+```
+
+Relative paths are resolved from the source document. The same typography
+arguments are available in `cover_letter_options()`.
+
+## Opt in to Google Fonts
+
+Set `google-font: "Source Serif 4"` in YAML or `google_font = "Source Serif 4"`
+in an options helper to add a Google Fonts stylesheet.
+liteformats uses its bundled catalog to request available weights and styles
+for regular, bold, italic, and bold italic text. It prefers a variable weight
+range when the family provides one and omits unsupported combinations.
+
+This is deliberately opt-in because it requires internet access when the
+document is rendered. A full Google Fonts CSS v2 URL overrides the
+catalog-derived request and can select explicit weights or variable axes:
+
+```{r}
+#| eval = FALSE
+liteformats::resume(
+  "resume.Rmd",
+  options = liteformats::resume_options(
+    google_font = paste0(
+      "https://fonts.googleapis.com/css2?",
+      "family=Inter:ital,opsz,wght@0,14..32,100..900;",
+      "1,14..32,100..900&display=swap"
+    )
+  )
+)
+```
+
+The full URL form also supports families newer than the bundled catalog.
+
+## Check fitting and text extraction
+
+Ligatures are disabled by default for more predictable text extraction from
+PDFs. An embedded font's own tables can also affect extraction, so check the
+final PDF when machine-readable text matters. For example:
+
+``` sh
+pdftotext document.pdf -
+```
+
+After changing a font, tune `font-scale`, `line-height`, paragraph and section
+spacing, or page margins, then inspect both HTML and PDF.
+See `vignette("config")` for page settings and configuration precedence.
