@@ -1,0 +1,54 @@
+---
+title: "Resumes"
+output:
+  html:
+    meta:
+      css: default
+vignette: >
+  %\VignetteIndexEntry{Resumes}
+  %\VignetteEngine{litedown::vignette}
+  %\VignetteEncoding{UTF-8}
+---
+
+Create a complete editable starter, then render it to self-contained HTML or
+PDF with the resume renderer:
+
+```{r}
+#| eval = FALSE
+liteformats::use_resume("resume.Rmd")
+liteformats::resume("resume.Rmd", "resume.html")
+liteformats::resume("resume.Rmd", "resume.pdf")
+```
+
+The starter demonstrates the supported top-level metadata: `title`, `author`,
+`job-title`, `address`, `phone`, `email`, `website`, and `linkedin`. Put shared
+appearance settings under `liteformats`; see `vignette("config")`.
+
+# Write semantic entries
+
+Use fenced divisions and inline spans to align dates and locations without
+LaTeX:
+
+``` markdown
+::: resume-entry
+**Example Corporation** [Seattle, WA · 2022--Present](){.resume-meta}
+
+**Principal Data Scientist** [Evidence Systems](){.resume-meta}
+
+- Led a cross-functional analytical program.
+- Built reusable, documented research software.
+:::
+```
+
+The `resume-entry` division identifies one entry. A `resume-meta` span aligns
+secondary information opposite the surrounding text. Ordinary Markdown lists
+remain the content structure, so the document is readable before rendering and
+its text remains accessible in the output.
+
+The resume template also adjusts entry markup before pagination so that long
+entries can break naturally across pages. Avoid adding keep-together wrappers
+around an entire entry or heading/list section, because those wrappers can
+create large page gaps.
+
+For ATS-sensitive output, keep ligatures disabled and verify the extracted text
+from the final PDF. `vignette("typography")` describes the relevant controls and checks.

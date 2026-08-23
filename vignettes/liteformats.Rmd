@@ -1,0 +1,63 @@
+---
+title: "Get started with liteformats"
+output:
+  html:
+    meta:
+      css: default
+vignette: >
+  %\VignetteIndexEntry{Get started with liteformats}
+  %\VignetteEngine{litedown::vignette}
+  %\VignetteEncoding{UTF-8}
+---
+
+liteformats provides lightweight document formats for
+[litedown](https://github.com/yihui/litedown).
+Source documents use Markdown with YAML metadata and can contain R code.
+The rendered output is self-contained HTML or a PDF printed from that HTML.
+
+# Choose a format
+
+Each format has a starter, a renderer, and an options helper. Keep these
+functions together when creating and rendering a document.
+
+## Resume
+
+Copy the resume starter, edit its YAML and Markdown, and render either output:
+
+```{r}
+#| eval = FALSE
+liteformats::use_resume("resume.Rmd")
+liteformats::resume("resume.Rmd", "resume.html")
+liteformats::resume("resume.Rmd", "resume.pdf")
+```
+
+See `vignette("resume")` for the format's metadata and entry syntax.
+
+## Cover letter
+
+Use the cover letter starter with its matching renderer:
+
+```{r}
+#| eval = FALSE
+liteformats::use_cover_letter("cover-letter.Rmd")
+liteformats::cover_letter("cover-letter.Rmd", "cover-letter.html")
+liteformats::cover_letter("cover-letter.Rmd", "cover-letter.pdf")
+```
+
+See `vignette("cover-letter")` for its metadata and fixed two-column composition.
+
+# Choose an output
+
+The output extension selects the result. HTML output is self-contained and
+does not need a browser. PDF output first creates the same HTML, then prints
+it with `xfun::browser_print()`. A local Chromium-based browser is
+therefore required for PDF output only.
+
+If `output` is omitted, the renderer writes an HTML file beside the source.
+Both renderers return the normalized output path invisibly.
+
+# Continue with the guides
+
+- `vignette("config")` explains YAML, R options, and precedence.
+- `vignette("typography")` covers type, spacing, font sources, and reliable text extraction.
+- `vignette("workflows")` shows a small `Make` workflow for repeatable HTML and PDF builds.

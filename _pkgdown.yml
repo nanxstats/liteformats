@@ -6,6 +6,22 @@ template:
     preset: "bootstrap"
   math-rendering: "mathjax"
 
+articles:
+  - title: "Get started"
+    contents:
+      - liteformats
+
+  - title: "Guides"
+    contents:
+      - config
+      - typography
+      - workflows
+
+  - title: "Formats"
+    contents:
+      - resume
+      - cover-letter
+
 reference:
   - title: "Formats"
     contents:
