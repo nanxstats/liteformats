@@ -46,14 +46,13 @@ HTML output is self-contained. A `.pdf` output path prints the HTML through
 headless Chrome, which must be installed to create PDFs but is not needed for
 HTML output.
 
-## Customize and automate
+## Learn more
 
-Typography, spacing, margins, paper size, and link color can be configured in
-the document YAML or with `liteformats::resume_options()` and
-`liteformats::cover_letter_options()`. Local font files are embedded in the
-output; Google Fonts are available as an explicit, network-dependent opt-in.
-Ligatures are disabled by default to improve ATS text extraction.
+Start with [Get started with liteformats](https://nanx.me/liteformats/articles/liteformats.html).
+The shared guides cover [configuration](https://nanx.me/liteformats/articles/config.html),
+[typography](https://nanx.me/liteformats/articles/typography.html),
+and [automated builds](https://nanx.me/liteformats/articles/workflows.html).
 
-For configuration examples, the resume entry syntax, cover letter metadata,
-and a Makefile workflow for repeatable builds, see the
-[resumes and cover letters vignette](https://nanx.me/liteformats/doc/formats.html).
+For format-specific metadata and authoring, see
+[resumes](https://nanx.me/liteformats/articles/resume.html) and
+[cover letters](https://nanx.me/liteformats/articles/cover-letter.html).
