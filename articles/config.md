@@ -1,0 +1,68 @@
+# Configure documents
+
+liteformats separates document metadata from reusable appearance
+settings. Metadata belongs at the top level of a source document’s YAML
+header. Settings belong in a flat `liteformats` mapping:
+
+``` yaml
+---
+title: "Jane Doe - Resume"
+author: "Jane Doe"
+job-title: "Research Scientist"
+liteformats:
+  paper: a4
+  margins: ["0.65in", "0.8in"]
+  link-color: "#385898"
+  paged: true
+---
+```
+
+Setting names in YAML use kebab case. Unknown names are rejected so that
+a misspelling cannot silently fall back to a default. The metadata
+fields available at the top level depend on the selected format; each
+format guide lists its fields.
+
+## Configure a render in R
+
+Every renderer has a matching options helper. Non-`NULL` values supplied
+to the helper override values from YAML:
+
+``` r
+
+liteformats::resume(
+  "resume.Rmd",
+  "resume.pdf",
+  options = liteformats::resume_options(
+    paper = "a4",
+    margins = c("0.7in", "0.8in"),
+    link_color = "#1f5a94"
+  )
+)
+```
+
+Use
+[`cover_letter_options()`](https://nanx.me/liteformats/reference/cover_letter_options.md)
+with
+[`cover_letter()`](https://nanx.me/liteformats/reference/cover_letter.md)
+in the same way. Keeping the helper and renderer matched provides
+argument checking and makes the format-specific metadata clear.
+
+## Page and PDF controls
+
+`paper` accepts `"letter"`, `"a4"`, `"legal"`, or a width and height
+given as CSS lengths. `margins` accepts one to four CSS lengths in
+standard CSS shorthand order; numeric values are interpreted as inches.
+`paged` controls whether an HTML preview opens in a paginated layout.
+PDF printing always uses the packaged pagination assets.
+
+Two PDF controls are available only through the options helper:
+
+- `keep_html = TRUE` retains the intermediate self-contained HTML beside
+  the PDF.
+- `browser` supplies the path to a Chromium-based browser when automatic
+  discovery is not suitable.
+
+See
+[`vignette("typography")`](https://nanx.me/liteformats/articles/typography.md)
+for the shared type and spacing settings, including local and online
+fonts.
