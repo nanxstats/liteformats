@@ -24,7 +24,7 @@ The starter demonstrates the supported top-level metadata: `title`, `author`,
 `job-title`, `address`, `phone`, `email`, `website`, and `linkedin`. Put shared
 appearance settings under `liteformats`; see `vignette("config")`.
 
-# Write semantic entries
+## Write semantic entries
 
 Use fenced divisions and inline spans to align dates and locations without
 LaTeX:

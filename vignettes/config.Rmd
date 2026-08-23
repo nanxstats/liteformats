@@ -32,7 +32,7 @@ misspelling cannot silently fall back to a default. The metadata fields
 available at the top level depend on the selected format; each format guide
 lists its fields.
 
-# Configure a render in R
+## Configure a render in R
 
 Every renderer has a matching options helper. Non-`NULL` values supplied to
 the helper override values from YAML:
@@ -54,7 +54,7 @@ Use `cover_letter_options()` with `cover_letter()` in the same way. Keeping
 the helper and renderer matched provides argument checking and makes the
 format-specific metadata clear.
 
-# Page and PDF controls
+## Page and PDF controls
 
 `paper` accepts `"letter"`, `"a4"`, `"legal"`, or a width and height given as
 CSS lengths. `margins` accepts one to four CSS lengths in standard CSS

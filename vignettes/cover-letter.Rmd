@@ -20,7 +20,7 @@ liteformats::cover_letter("cover-letter.Rmd", "cover-letter.html")
 liteformats::cover_letter("cover-letter.Rmd", "cover-letter.pdf")
 ```
 
-# Supply letter metadata
+## Supply letter metadata
 
 The letterhead and salutation come from top-level YAML fields: `title`,
 `author`, `address`, `phone`, `email`, `website`, `date`, and `greeting`.
@@ -43,7 +43,7 @@ date: "`{r} format(Sys.Date(), '%B %e, %Y')`"
 The starter also demonstrates variables evaluated in the letter body and an
 embedded signature image.
 
-# Preserve the composition
+## Preserve the composition
 
 The cover letter template places the letterhead and body in two columns at
 every viewport width. This fixed page composition also appears in narrow IDE

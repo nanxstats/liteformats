@@ -28,7 +28,7 @@ liteformats:
 metrics. The spacing controls accept CSS values. Format defaults may differ to
 fit their content and composition.
 
-# Use local fonts
+## Use local fonts
 
 A local family can provide regular, italic, bold, and bold italic font files.
 OTF, TTF, WOFF, and WOFF2 files are embedded as data URIs, keeping the HTML
@@ -53,7 +53,7 @@ liteformats::resume(
 Relative paths are resolved from the source document. The same typography
 arguments are available in `cover_letter_options()`.
 
-# Opt in to Google Fonts
+## Opt in to Google Fonts
 
 Set `google-font: "Source Serif 4"` in YAML or `google_font = "Source Serif 4"`
 in an options helper to add a Google Fonts stylesheet.
@@ -81,7 +81,7 @@ liteformats::resume(
 
 The full URL form also supports families newer than the bundled catalog.
 
-# Check fitting and text extraction
+## Check fitting and text extraction
 
 Ligatures are disabled by default for more predictable text extraction from
 PDFs. An embedded font's own tables can also affect extraction, so check the

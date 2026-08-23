@@ -15,12 +15,12 @@ liteformats provides lightweight document formats for
 Source documents use Markdown with YAML metadata and can contain R code.
 The rendered output is self-contained HTML or a PDF printed from that HTML.
 
-# Choose a format
+## Choose a format
 
 Each format has a starter, a renderer, and an options helper. Keep these
 functions together when creating and rendering a document.
 
-## Resume
+### Resume
 
 Copy the resume starter, edit its YAML and Markdown, and render either output:
 
@@ -33,7 +33,7 @@ liteformats::resume("resume.Rmd", "resume.pdf")
 
 See `vignette("resume")` for the format's metadata and entry syntax.
 
-## Cover letter
+### Cover letter
 
 Use the cover letter starter with its matching renderer:
 
@@ -46,7 +46,7 @@ liteformats::cover_letter("cover-letter.Rmd", "cover-letter.pdf")
 
 See `vignette("cover-letter")` for its metadata and fixed two-column composition.
 
-# Choose an output
+## Choose an output
 
 The output extension selects the result. HTML output is self-contained and
 does not need a browser. PDF output first creates the same HTML, then prints
@@ -56,7 +56,7 @@ therefore required for PDF output only.
 If `output` is omitted, the renderer writes an HTML file beside the source.
 Both renderers return the normalized output path invisibly.
 
-# Continue with the guides
+## Continue with the guides
 
 - `vignette("config")` explains YAML, R options, and precedence.
 - `vignette("typography")` covers type, spacing, font sources, and reliable text extraction.

@@ -34,7 +34,7 @@ Run `make` to build every target, or name one target such as
 so it can include project-specific options, preprocessing, postprocessing,
 or other dependencies.
 
-# Rendering model
+## Rendering model
 
 Each render has two stages. First, `litedown::fuse(..., "markdown")` evaluates
 R code and YAML. Then `litedown::mark()` applies the format's HTML template.
