@@ -14,7 +14,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/nanxstats/liteformats/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/nanxstats/liteformats/blob/v0.2.0/DESCRIPTION)
 
 Xiao N (2026). *liteformats: Lightweight Output Formats for 'litedown'*.
 R package version 0.2.0, <https://nanx.me/liteformats/>.
