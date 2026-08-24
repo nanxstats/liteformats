@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">liteformats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,23 +41,23 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="liteformats-development-version">liteformats (development version)<a class="anchor" aria-label="anchor" href="#liteformats-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="liteformats-020">liteformats 0.2.0<a class="anchor" aria-label="anchor" href="#liteformats-020"></a></h2>
 <div class="section level3">
-<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<h3 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
 <ul><li>Added <code><a href="../reference/include_graphics.html">liteformats::include_graphics()</a></code> to embed local images as base64 data URIs in raw HTML that can be emitted directly from litedown code chunks. Added a bundled signature image to the cover letter starter (<a href="https://github.com/nanxstats/liteformats/issues/20" class="external-link">#20</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<h3 id="bug-fixes-0-2-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-0"></a></h3>
 <ul><li>Fixed overly aggressive resume pagination that treated complete experiences and list-based sections as indivisible, leaving large gaps at page bottoms. Resume entries now fill the available page and continue across pages at normal paragraph and list boundaries while retaining compact list indentation (<a href="https://github.com/nanxstats/liteformats/issues/8" class="external-link">#8</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h3>
+<h3 id="improvements-0-2-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-2-0"></a></h3>
 <ul><li>Simplified <code><a href="../reference/resume.html">resume()</a></code> and <code><a href="../reference/cover_letter.html">cover_letter()</a></code> to four primary arguments. Secondary metadata, typography, pagination, and PDF controls now live in classed <code><a href="../reference/resume_options.html">resume_options()</a></code> and <code><a href="../reference/cover_letter_options.html">cover_letter_options()</a></code> objects. The same internal option schema can be reused by future document formats, and the canonical YAML configuration is now checked for unknown names (<a href="https://github.com/nanxstats/liteformats/issues/12" class="external-link">#12</a>).</li>
 <li>Refactored opt-in Google Fonts loading to use bundled font metadata. Font family names now request the available weights and styles needed for regular, bold, italic, and bold-italic text, prefer variable weight and slant ranges, and omit unsupported combinations. Full CSS v2 URLs remain supported for custom axes and newer families. A maintainer script was added to refresh the catalog without Google API credentials (<a href="https://github.com/nanxstats/liteformats/issues/10" class="external-link">#10</a>).</li>
 <li>Matched resume section divider rules to LaTeX’s 0.4 TeX point rule thickness, using a scaled rule to avoid Chromium’s 1px minimum for CSS borders in PDF output (<a href="https://github.com/nanxstats/liteformats/issues/21" class="external-link">#21</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
+<h3 id="documentation-0-2-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-2-0"></a></h3>
 <ul><li>Qualified the namespaces in code examples of the README so they become self-contained. Removed configuration, typography, and automation details and redirect to the vignette to reduce duplication (<a href="https://github.com/nanxstats/liteformats/issues/14" class="external-link">#14</a>).</li>
 </ul></div>
 </div>

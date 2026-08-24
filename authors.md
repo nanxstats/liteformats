@@ -17,12 +17,12 @@ Source:
 [`DESCRIPTION`](https://github.com/nanxstats/liteformats/blob/main/DESCRIPTION)
 
 Xiao N (2026). *liteformats: Lightweight Output Formats for 'litedown'*.
-R package version 0.1.0.9001, <https://nanx.me/liteformats/>.
+R package version 0.2.0, <https://nanx.me/liteformats/>.
 
     @Manual{,
       title = {liteformats: Lightweight Output Formats for 'litedown'},
       author = {Nan Xiao},
       year = {2026},
-      note = {R package version 0.1.0.9001},
+      note = {R package version 0.2.0},
       url = {https://nanx.me/liteformats/},
     }
