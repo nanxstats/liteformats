@@ -2,6 +2,8 @@
 
 ## liteformats 0.2.0
 
+CRAN release: 2026-08-24
+
 ### New features
 
 - Added
