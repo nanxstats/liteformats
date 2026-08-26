@@ -13,6 +13,16 @@ assert("resume starter renders to offline, self-contained HTML", {
   (grepl("entry.replaceWith(...parts)", html, fixed = TRUE))
   (!grepl("resume-section-group", html, fixed = TRUE))
   (grepl(".liteformats-resume ul,", html, fixed = TRUE))
+  (grepl('content: "\\2022";', html, fixed = TRUE))
+  (grepl('content: "\\25E6";', html, fixed = TRUE))
+  (grepl("padding-left: 0.88em;", html, fixed = TRUE))
+  (grepl("padding-left: 1.02em;", html, fixed = TRUE))
+  (grepl("left: -1.02em;", html, fixed = TRUE))
+  (grepl(
+    "transform: translate(0.035em, 0.04em) scale(1.55);",
+    html,
+    fixed = TRUE
+  ))
   (grepl("transform: scaleY(0.5313333333);", html, fixed = TRUE))
   (!grepl("cdn.jsdelivr.net", html, fixed = TRUE))
   (!grepl("fonts.googleapis.com", html, fixed = TRUE))

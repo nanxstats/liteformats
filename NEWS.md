@@ -2,6 +2,9 @@
 
 ## Improvements
 
+- Refined resume list markers with explicit `U+2022` and `U+25E6` glyphs,
+  with better indentation, spacing, optical sizing, and alignment matching
+  similar LaTeX templates (#46).
 - Updated the cover letter signature name to upright text at the same size as
   the body copy, following standard letter formatting convention (#45).
 
