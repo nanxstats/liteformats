@@ -37,11 +37,11 @@ Avoid selectors that would affect metadata such as contact information.
 ## How resume pagination works
 
 pages.js fills a page from the direct element children of `.body`. Paragraphs
-can split by rendered line, and top-level `ul`, `ol`, `table`, and `blockquote`
-elements can fragment. A multi-child `div` is not one of its breakable
-containers: if the whole element overflows, pages.js moves it to the next page.
-CSS declarations such as `break-after: avoid` do not change this JavaScript
-placement decision.
+can split by rendered line, but `ul` and `ol` elements normally fragment only
+between complete top-level `li` elements. A parent item that contains a nested
+list is therefore atomic with all of its descendants. A multi-child `div` is
+also not one of its breakable containers. CSS declarations such as
+`break-after: avoid` do not change these JavaScript placement decisions.
 
 CommonMark renders each `::: resume-entry` as a multi-child `div`, normally
 containing two metadata paragraphs followed by a list. The resume script
@@ -50,17 +50,23 @@ with its children just before pagination. Marker classes on the first, second,
 and last children preserve the entry header and bottom-spacing styles. The
 unpaged document retains the original semantic wrapper.
 
-Do not wrap a heading and its complete list merely to keep them together.
-That makes the entire section atomic and can move many lines that would
-otherwise fit. Let the heading and list remain direct body children, and let
-pages.js fragment lists at list-item boundaries. Some unused space can still
-occur when the next individual list item does not fit; nested lists are part of
-their parent item. This bounded underfill is preferable to moving an entire
-job or section.
+After flattening entries, the same event handler replaces each direct resume
+list with styled paragraph items. This transformation is limited to the paged
+DOM: the unpaged HTML keeps semantic `ul`, `ol`, and `li` markup. pages.js can
+then use its paragraph splitter to fill every page through the last rendered
+line that fits, including lines within a single item or its nested items.
+Continuation fragments suppress duplicate markers. Unordered items retain the
+template's positioned text glyphs; ordered items use native list-item markers.
 
-When the last child of an entry is a fragmented list, pages.js shallow-clones
-its wrapper and classes. Apply entry-ending space only to the final fragment;
-otherwise the cloned margin consumes usable space at every page boundary.
+Do not add `break-*`, `orphans`, or `widows` constraints to the resume. Resume
+pagination is intentionally natural rather than keep-together or orphan-aware:
+the author controls undesirable visual breaks by adjusting content and page
+geometry.
+
+When pages.js splits the final paragraph item in a list, it shallow-clones the
+paragraph and its classes. Suppress list-opening, list-ending, and entry-ending
+margins on nonterminal fragments; otherwise cloned margins consume usable
+space at the page boundary.
 
 ## Reliable workflow
 

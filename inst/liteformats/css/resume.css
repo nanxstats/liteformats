@@ -45,7 +45,6 @@
   border-bottom: 1px solid transparent;
   font-size: 1.42em;
   line-height: 1.08;
-  break-after: avoid;
 }
 
 .liteformats-resume h2::after {
@@ -70,11 +69,12 @@
   margin: 0.7em 0 0.2em;
   font-size: 1em;
   line-height: 1.15;
-  break-after: avoid;
 }
 
 .liteformats-resume p {
   margin: 0 0 var(--lf-paragraph-spacing);
+  orphans: 1;
+  widows: 1;
 }
 
 .liteformats-resume ul,
@@ -131,6 +131,64 @@
   margin-bottom: 0.15em;
 }
 
+/*
+ * pages.js splits paragraphs by rendered line but treats each <li> as atomic.
+ * resume.js therefore turns list content into these paragraph items only when
+ * pagination starts. The unpaged document keeps its semantic list markup.
+ */
+.liteformats-resume .resume-list-item {
+  position: relative;
+  margin: 0.08em 0;
+  padding-left: var(--resume-list-indent);
+}
+
+.liteformats-resume .resume-list-root-first {
+  margin-top: 0.25em;
+}
+
+.liteformats-resume .resume-list-nested-last {
+  margin-bottom: 0.15em;
+}
+
+.liteformats-resume .resume-list-root-last {
+  margin-bottom: 0.5em;
+}
+
+.liteformats-resume .resume-list-item.pagesjs-fragmented:not(.fragment-first) {
+  margin-top: 0;
+}
+
+.liteformats-resume .resume-list-item.pagesjs-fragmented:not(.fragment-last) {
+  margin-bottom: 0;
+}
+
+.liteformats-resume .resume-list-unordered::before {
+  position: absolute;
+  top: 0;
+  left: var(--resume-list-marker-left);
+  content: "\2022";
+}
+
+.liteformats-resume .resume-list-unordered.resume-list-nested::before {
+  content: "\25E6";
+  transform: translate(0.035em, 0.04em) scale(1.55);
+  transform-origin: left center;
+}
+
+.liteformats-resume .resume-list-ordered {
+  display: list-item;
+  margin-left: var(--resume-list-marker-left);
+  padding-left: 0.08em;
+}
+
+.liteformats-resume .resume-list-marker.pagesjs-fragmented:not(.fragment-first)::before {
+  content: "";
+}
+
+.liteformats-resume .resume-list-ordered.pagesjs-fragmented:not(.fragment-first) {
+  list-style-type: none !important;
+}
+
 .resume-entry {
   margin: 0 0 0.55em;
 }
@@ -142,7 +200,6 @@
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 0.08em;
-  break-after: avoid;
 }
 
 .resume-entry>p:nth-child(2),
@@ -151,7 +208,6 @@
   gap: 1em;
   align-items: baseline;
   justify-content: space-between;
-  break-after: avoid;
 }
 
 .resume-entry-last {
