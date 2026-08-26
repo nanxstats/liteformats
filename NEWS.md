@@ -1,3 +1,10 @@
+# liteformats (development version)
+
+## Improvements
+
+- Updated the cover letter signature name to upright text at the same size as
+  the body copy, following standard letter formatting convention (#45).
+
 # liteformats 0.2.0
 
 ## New features
