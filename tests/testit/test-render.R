@@ -11,6 +11,8 @@ assert("resume starter renders to offline, self-contained HTML", {
   (grepl("pagesjs:after", html, fixed = TRUE))
   (grepl('addEventListener("pagesjs:before"', html, fixed = TRUE))
   (grepl("entry.replaceWith(...parts)", html, fixed = TRUE))
+  (grepl("flattenList(list)", html, fixed = TRUE))
+  (grepl("list.replaceWith(...parts)", html, fixed = TRUE))
   (!grepl("resume-section-group", html, fixed = TRUE))
   (grepl(".liteformats-resume ul,", html, fixed = TRUE))
   (grepl('content: "\\2022";', html, fixed = TRUE))
@@ -18,6 +20,10 @@ assert("resume starter renders to offline, self-contained HTML", {
   (grepl("padding-left: 0.88em;", html, fixed = TRUE))
   (grepl("padding-left: 1.02em;", html, fixed = TRUE))
   (grepl("left: -1.02em;", html, fixed = TRUE))
+  (grepl(".resume-list-marker.pagesjs-fragmented", html, fixed = TRUE))
+  (grepl("orphans: 1;", html, fixed = TRUE))
+  (grepl("widows: 1;", html, fixed = TRUE))
+  (!grepl("break-after: avoid;", html, fixed = TRUE))
   (grepl(
     "transform: translate(0.035em, 0.04em) scale(1.55);",
     html,
