@@ -80,15 +80,44 @@
 .liteformats-resume ul,
 .liteformats-resume ol {
   margin: 0.25em 0 0.5em;
+}
+
+.liteformats-resume ol {
   padding-left: 1.15em;
 }
 
 .liteformats-resume ul {
+  padding-left: 0.88em;
   list-style-type: disc;
 }
 
+.liteformats-resume ul>li::marker {
+  content: "";
+}
+
+.liteformats-resume ul>li {
+  position: relative;
+}
+
+/* Align a text bullet with the content edge, independent of native markers. */
+.liteformats-resume ul>li::before {
+  position: absolute;
+  top: 0;
+  left: -0.88em;
+  content: "\2022";
+}
+
 .liteformats-resume ul ul {
+  padding-left: 1.02em;
   list-style-type: circle;
+}
+
+.liteformats-resume ul ul>li::before {
+  left: -1.02em;
+  content: "\25E6";
+  /* Center under the parent capital and sit slightly lower optically. */
+  transform: translate(0.035em, 0.04em) scale(1.55);
+  transform-origin: left center;
 }
 
 .liteformats-resume li {
