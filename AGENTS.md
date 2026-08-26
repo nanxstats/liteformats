@@ -48,6 +48,19 @@
   the actual CommonMark HTML in unpaged HTML, pages.js output, and PDF
   because list structure, browser defaults, and pagination all affect
   spacing and markers.
+- Resume unordered list markers intentionally use positioned `::before`
+  text glyphs (`U+2022` and `U+25E6`) while suppressing the native
+  `::marker`. Browsers otherwise draw font-dependent geometric markers
+  that do not match LaTeX symbol sizing or baselines, especially with
+  embedded commercial fonts. Preserve the independent marker geometry
+  and leave ordered markers native.
+- When refining resume markers, compare PDF coordinates and high
+  resolution raster output, not screenshots alone. Keep the first-level
+  bullet’s left edge aligned with the section rule, keep both
+  marker-to-text gaps optically equal, and center the nested hollow
+  circle horizontally under the parent item’s first capital while
+  positioning it slightly lower. Retest with both the default font and a
+  font with visibly different metrics.
 - Preserve the resume’s `pagesjs:before` entry flattening. pages.js
   treats a multi-child `<div>` as indivisible and does not use CSS
   `break-*` rules for its element-placement decisions, so keep-together
