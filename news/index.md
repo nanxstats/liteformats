@@ -4,6 +4,11 @@
 
 ### Improvements
 
+- Changed resume pagination to fill pages one rendered line at a time,
+  even within multi-line and nested list items. Removed keep-together,
+  widow, and orphan hints from the resume so authors retain direct
+  control over breaks through content and page geometry
+  ([\#47](https://github.com/nanxstats/liteformats/issues/47)).
 - Refined resume list markers with explicit `U+2022` and `U+25E6`
   glyphs, with better indentation, spacing, optical sizing, and
   alignment matching similar LaTeX templates
