@@ -1,0 +1,106 @@
+version = 2
+okr-version = "0.1.9"
+generated = "2026-09-02T00:00:00Z"
+snapshot = "2026-09-02"
+config-digest = "sha256:2f2d779fb8a4577f1585ecae5699074b855d16bad7edf8f468add2fa6c1986ac"
+environment-digest = "sha256:f7c4d12d5868169ae79a3c22f8178dcba766945625e761bc321bb9ba26838528"
+
+[[package]]
+name = "litedown"
+version = "0.11"
+source = "cran"
+url = "https://packagemanager.posit.co/cran/2026-09-02/src/contrib/litedown_0.11.tar.gz"
+fetch-method = "tarball"
+tree-digest = "sha256:d7c1ca3f32b77186085dc06524906a5099fa4c4ff8706f9bc2601929578a0ac9"
+license = "MIT + file LICENSE"
+
+[[package]]
+name = "rmdformats"
+version = "1.0.4"
+source = "cran"
+url = "https://packagemanager.posit.co/cran/2026-09-02/src/contrib/rmdformats_1.0.4.tar.gz"
+fetch-method = "tarball"
+tree-digest = "sha256:dcbbdb943913a801e640e2268b24e84c94d4d8e49cb750ae1f3f4372c6008766"
+license = "GPL (>= 2)"
+
+[[package]]
+name = "rticles"
+version = "0.27"
+source = "cran"
+url = "https://packagemanager.posit.co/cran/2026-09-02/src/contrib/rticles_0.27.tar.gz"
+fetch-method = "tarball"
+tree-digest = "sha256:7bfe06d85456f8247e30a4726dd33bdc6600f9dc2581fcb46d8e2dd91d41f3d9"
+license = "GPL-3"
+
+[[package]]
+name = "stevetemplates"
+version = "1.4.0"
+source = "cran"
+url = "https://packagemanager.posit.co/cran/2026-09-02/src/contrib/stevetemplates_1.4.0.tar.gz"
+fetch-method = "tarball"
+tree-digest = "sha256:8b6138a49ee9d0240a22362631876f6c9be163ad2667a0aa392dab801aa40dbc"
+license = "GPL-2"
+
+[[package]]
+name = "testit"
+version = "1.1"
+source = "cran"
+url = "https://packagemanager.posit.co/cran/2026-09-02/src/contrib/testit_1.1.tar.gz"
+fetch-method = "tarball"
+tree-digest = "sha256:4d3664d60c3101ed41b379993f4bed36ec00ca34052a2cba6aa38f3e60a59de4"
+license = "MIT + file LICENSE"
+
+[[package]]
+name = "xfun"
+version = "0.60"
+source = "cran"
+url = "https://packagemanager.posit.co/cran/2026-09-02/src/contrib/xfun_0.60.tar.gz"
+fetch-method = "tarball"
+tree-digest = "sha256:5c15d21ff9edc01143bde0a222579f466335568f91013f012cf0c7fbb80c9f71"
+license = "MIT + file LICENSE"
+
+[[reference]]
+name = "colloquium"
+source = "github::natolambert/colloquium"
+commit = "c9856b28995ab4165d1818416c3495961e137b43"
+fetch-method = "forge-tarball"
+tree-digest = "sha256:a15d7b4454f039e99f2729c670e3385367ffc8f5e70a5b386f9077bcdc32b78f"
+license = "MIT"
+
+[[reference]]
+name = "extrachecks"
+source = "github::DavisVaughan/extrachecks"
+commit = "a37e1ee87e47e99ba0ed88a4dfe417141ca5d89e"
+fetch-method = "forge-tarball"
+tree-digest = "sha256:72798d72a73e0a440c376925b28ebef34bcb705be1ab187b9db4bb696a1c6aff"
+
+[[reference]]
+name = "lite.js"
+source = "github::yihui/lite.js"
+commit = "f1e360f3ef654ddc90c7de22b0795f242c8b0d82"
+fetch-method = "forge-tarball"
+tree-digest = "sha256:e9d3b2a334b27822c3735379d33a23231d71b0f73e2bbb5c6f69b13e082c22bc"
+license = "MIT"
+
+[[reference]]
+name = "present.nvim"
+source = "github::tjdevries/present.nvim"
+commit = "ce22dfaf9ebc2b37eb688e00929dfaeff126fe94"
+fetch-method = "forge-tarball"
+tree-digest = "sha256:8d8f44cfbd9a5672cf7d8032cea40fb018606ffa5fbdb60be6d55bdefb9a0f8f"
+
+[[reference]]
+name = "presenterm"
+source = "github::mfontanini/presenterm"
+commit = "5f8add11a24af9d257fd18da48c8004dd9c516f8"
+fetch-method = "forge-tarball"
+tree-digest = "sha256:de5577dcb9941c8af7ba686cc3a28b5282d9e9ef826266d910f3a255407fbc10"
+license = "LICENSE"
+
+[[reference]]
+name = "r-pkgs"
+source = "github::hadley/r-pkgs"
+commit = "caafeea1b29e8cd65b9abc7fbfd9cf2f33a271f8"
+fetch-method = "forge-tarball"
+tree-digest = "sha256:4a49711a70727fc54d4cfc8e9f78be7cae8280de09ef444d4aa7a06a9ed33fa6"
+license = "LICENSE"
