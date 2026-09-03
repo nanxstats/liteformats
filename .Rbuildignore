@@ -1,12 +1,14 @@
 ^liteformats\.Rproj$
 ^\.Rproj\.user$
 
-^vendor$
 ^\.github$
 ^tools$
-^AGENTS\.md$
 ^LICENSE\.md$
 
 ^docs$
-^_pkgdown\.yml$
 ^pkgdown$
+^_pkgdown\.yml$
+^deps-src$
+^okr\.toml$
+^okr\.lock$
+^AGENTS\.md$
