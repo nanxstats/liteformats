@@ -13,7 +13,13 @@ Pandoc nor LaTeX.
 
 ## Installation
 
-You can install the development version of liteformats from GitHub with:
+You can install liteformats from CRAN:
+
+``` r
+install.packages("liteformats")
+```
+
+Or try the development version from GitHub:
 
 ``` r
 # install.packages("pak")
